@@ -81,22 +81,22 @@ export default function SupportChat() {
   };
 
   return (
-    <div className="flex h-screen bg-[#fafbfc]">
+    <div className="flex h-screen bg-[#0a0a0a]">
       <main className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+        <header className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/40 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] flex items-center justify-center shadow-lg shadow-[#47C2EB]/20">
               <span className="text-white font-bold text-lg">R</span>
             </div>
             <div>
-              <h1 className="font-semibold text-gray-900 tracking-tight">Retarget IQ Support</h1>
-              <p className="text-xs text-gray-600">AI-powered assistant</p>
+              <h1 className="font-semibold text-white tracking-tight">Retarget IQ Support</h1>
+              <p className="text-xs text-gray-400">AI-powered assistant</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs text-gray-600">Online</span>
+            <span className="text-xs text-gray-400">Online</span>
           </div>
         </header>
 
@@ -110,10 +110,10 @@ export default function SupportChat() {
                   <Bot className="h-10 w-10 text-[#47C2EB]" />
                 </div>
               </div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-3 text-balance tracking-tight">
+              <h2 className="text-2xl font-semibold text-white mb-3 text-balance tracking-tight">
                 Paste your support request
               </h2>
-              <p className="text-gray-600 max-w-sm text-center text-balance leading-relaxed">
+              <p className="text-gray-400 max-w-sm text-center text-balance leading-relaxed">
                 Copy a customer email and paste it below to get a suggested response.
               </p>
             </div>
@@ -123,11 +123,11 @@ export default function SupportChat() {
                 <ChatMessage key={message.id} message={message} />
               ))}
               {isLoading && (
-                <div className="flex gap-4 p-4 rounded-xl bg-white border border-gray-200 shadow-sm">
+                <div className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/10 shadow-sm">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] text-white shadow-md shadow-[#47C2EB]/20">
                     <Bot className="h-4 w-4" />
                   </div>
-                  <div className="flex items-center gap-3 text-gray-600">
+                  <div className="flex items-center gap-3 text-gray-400">
                     <div className="flex gap-1">
                       <span className="h-2 w-2 rounded-full bg-[#47C2EB]/60 animate-bounce [animation-delay:-0.3s]" />
                       <span className="h-2 w-2 rounded-full bg-[#47C2EB]/60 animate-bounce [animation-delay:-0.15s]" />
@@ -143,7 +143,7 @@ export default function SupportChat() {
         </div>
 
         {/* Input */}
-        <div className="border-t border-gray-200 p-4 bg-white/50 backdrop-blur-sm">
+        <div className="border-t border-white/10 p-4 bg-black/20 backdrop-blur-sm">
           <div className="max-w-3xl mx-auto">
             <ChatInput
               value={input}

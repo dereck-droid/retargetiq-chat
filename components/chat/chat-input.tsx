@@ -39,14 +39,14 @@ export function ChatInput({
   };
 
   return (
-    <div className="relative flex items-end gap-3 p-3 bg-white rounded-2xl border border-gray-200 shadow-lg shadow-black/5 transition-all duration-200 focus-within:border-[#47C2EB]/50 focus-within:shadow-[#47C2EB]/5">
+    <div className="relative flex items-end gap-3 p-3 bg-white/5 rounded-2xl border border-white/10 shadow-lg shadow-black/5 transition-all duration-200 focus-within:border-[#47C2EB]/50 focus-within:shadow-[#47C2EB]/5">
       <Textarea
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Paste customer email or support request here..."
-        className="min-h-[44px] max-h-[200px] flex-1 resize-none border-none bg-transparent p-2 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-gray-900 placeholder:text-gray-500 text-[15px] leading-relaxed"
+        className="min-h-[44px] max-h-[200px] flex-1 resize-none border-none bg-transparent p-2 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-white placeholder:text-gray-500 text-[15px] leading-relaxed"
         disabled={isLoading}
         rows={1}
       />
