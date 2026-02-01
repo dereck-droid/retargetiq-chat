@@ -1,0 +1,144 @@
+{
+  "name": "RetargetIQ Chat Support Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retargetiq-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "id": "a1b2c3d4-webhook",
+      "name": "Chat Webhook",
+      "webhookId": "retargetiq-chat-webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ (() => { const msgs = $json.body.messages || []; if (msgs.length <= 1) return msgs[0]?.content || 'Hello'; const history = msgs.slice(0, -1).map(m => (m.role === 'user' ? 'User: ' : 'Assistant: ') + m.content).join('\\n'); const latest = msgs[msgs.length - 1]?.content || ''; return '[Previous conversation]\\n' + history + '\\n\\n[Current message]\\n' + latest; })() }}",
+        "hasOutputParser": false,
+        "options": {
+          "returnIntermediateSteps": false,
+          "maxIterations": 10,
+          "memoryKey": "chat_history",
+          "systemMessage": "You are a support chat assistant for Retarget IQ, a B2B and B2C intent data platform. You represent the support team (Cindy, Nate, Alex).\n\n## VOICE & STYLE (Match these examples exactly)\n\nUse casual, direct language like our team:\n- Say \"Ya\" instead of \"Yes\" sometimes\n- Use \"Thanks\" not \"Thank you\"\n- Keep sentences short and punchy\n- Use exclamation points for warmth: \"Hi there!\" \"Great question!\"\n- Never sound robotic or corporate\n\n### Example Phrases to Use:\n- \"Ya, that's totally possible!\"\n- \"No problem! Let me explain...\"\n- \"That functionality is coming with V2 which we're releasing Feb 15th.\"\n- \"Our base layer data source is the same provider that Fortune 100 and Fortune 500 companies use.\"\n- \"Let me know if you have any other questions!\"\n\n### Example Response Patterns:\n\nFor feature questions:\n\"Ya! [Feature] works by [brief explanation]. [Additional detail if needed]. Let me know if you want me to walk you through it!\"\n\nFor pricing questions:\n\"So the quarterly plan is $497/month and that includes unlimited audiences, unlimited records, and 10 Super Pixels. If you sign up now that pricing is locked in permanently - even when V2 launches with higher prices.\"\n\nFor V2/coming soon features:\n\"That's coming with V2 which we're releasing Feb 15th! Once that's live you'll be able to [benefit]. Current customers get it automatically at their locked-in pricing.\"\n\nFor technical issues:\n\"No problem! I'll get our dev team on this. Can you send over [specific info needed] so we can look into it asap?\"\n\nFor competitor comparisons:\n\"Ya the biggest issue in the data space is basically everyone saying they're better. All I can say is our base layer data source is the same provider that Fortune 100 and Fortune 500 companies use. Even with unlimited funds there's no better provider available.\"\n\n## ALWAYS USE KNOWLEDGE BASE TOOL\nFor ANY question about features, pricing, capabilities, or technical details - search the knowledge base FIRST.\n\n## KEY FACTS\n- V2 launches Feb 15th\n- Quarterly: $497/month, Annual: $407/month\n- API: $297/month (month-to-month)\n- White Label: $3,000/month (10 licenses)\n- Super Pixel: 40-70% visitor identification\n- Meta match rates: 90%+\n- All pricing grandfathered permanently\n\n## RESPONSE RULES\n1. Keep responses SHORT - 2-3 paragraphs max\n2. Sound like a real person, not a bot\n3. Reference V2 and Feb 15th when relevant\n4. For technical issues, offer to escalate to dev team\n5. End with \"Let me know!\" or similar\n\n## DON'T\n- Don't be overly formal\n- Don't write long essays\n- Don't make up numbers\n- Don't say \"I apologize\" - say \"No problem\" instead"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [480, 300],
+      "id": "e5f6g7h8-agent",
+      "name": "RetargetIQ Support Agent"
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-sonnet-4-20250514",
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 1024
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [300, 500],
+      "id": "i9j0k1l2-openrouter",
+      "name": "OpenRouter LLM",
+      "credentials": {
+        "openRouterApi": {
+          "id": "YOUR_OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "search_knowledge_base",
+        "description": "Search the Retarget IQ knowledge base for answers about features, pricing, capabilities, technical support, integrations, and how-to questions. Use this tool whenever a user asks about Retarget IQ products or services. Input should be a search query string.",
+        "code": "// RetargetIQ Knowledge Base V2 - 52 FAQs\nconst knowledgeBase = {\n  \"categories\": [\n    {\n      \"name\": \"Product Features & Capabilities\",\n      \"faqs\": [\n        {\"id\": \"faq-001\", \"question\": \"Are there limits on audiences or records?\", \"answer\": \"No. Retarget IQ offers unlimited audiences and unlimited records. You can pull hundreds of millions of records and create up to 10,000 audiences. The only limitation is a million records per single query to ensure targeting remains specific.\", \"keywords\": [\"unlimited\", \"audiences\", \"records\", \"limits\", \"queries\"]},\n        {\"id\": \"faq-002\", \"question\": \"What is the Super Pixel?\", \"answer\": \"The Super Pixel is a website tracking code that identifies anonymous visitors without requiring forms. It captures 40-70% of visitors depending on traffic source and cookie permissions. Each license includes 5 Super Pixels, add more for $10 each.\", \"keywords\": [\"super pixel\", \"pixel\", \"website tracking\", \"visitor identification\"]},\n        {\"id\": \"faq-003\", \"question\": \"What data does Retarget IQ capture?\", \"answer\": \"Comprehensive visitor data: full name, personal/business emails, phone numbers, mailing address, age, gender, marital status, income, net worth, LinkedIn profile, company associations, vehicle info, property ownership, device type, user path, and behavioral intent signals.\", \"keywords\": [\"data fields\", \"visitor data\", \"contact information\", \"demographics\"]},\n        {\"id\": \"faq-004\", \"question\": \"Can I schedule automatic audience refreshes?\", \"answer\": \"Yes. Schedule audiences to refresh daily, weekly, or hourly. Also schedule automatic pushes to ad accounts so fresh intent data flows to Meta, Google Ads, or other platforms automatically.\", \"keywords\": [\"scheduling\", \"automation\", \"refresh\", \"audience updates\"]},\n        {\"id\": \"faq-005\", \"question\": \"What is the difference between B2B and B2C intent?\", \"answer\": \"B2B intent tracks purchasing behavior on behalf of a business (CRM software, business services). B2C intent tracks consumer purchasing behavior (auto repair, roofing, bourbon). Same data quality, different intent categories.\", \"keywords\": [\"B2B\", \"B2C\", \"intent types\", \"business intent\", \"consumer intent\"]},\n        {\"id\": \"faq-006\", \"question\": \"How far back can I pull intent data?\", \"answer\": \"From last 24 hours up to 2 weeks. Platform caps at 2 weeks because buying cycles complete within that timeframe - older data would be stale.\", \"keywords\": [\"intent window\", \"timeframe\", \"date range\", \"buying cycle\"]},\n        {\"id\": \"faq-007\", \"question\": \"What do intent ratings mean?\", \"answer\": \"Low intent = B grade (some interest). Medium intent = A (strong buying signals). High intent = A+ (repeated, sustained interest, very likely to purchase soon). High intent is ideal for immediate outreach.\", \"keywords\": [\"intent score\", \"intent rating\", \"buying signals\", \"lead quality\"]},\n        {\"id\": \"faq-008\", \"question\": \"Can I export data to CSV?\", \"answer\": \"Yes. Download audiences as CSV with all data fields. Also direct integrations with Meta, Google Ads, HubSpot, GoHighLevel, Salesforce, Klaviyo, Mailchimp, Pipedrive, Slack. Everything accessible via API too.\", \"keywords\": [\"export\", \"CSV\", \"download\", \"integrations\"]},\n        {\"id\": \"faq-009\", \"question\": \"Does Retarget IQ offer direct mail?\", \"answer\": \"Yes. Send postcards (4x6 or 6x9) for ~$0.90/piece including postage. Upload custom designs and trigger mail based on visitor behavior.\", \"keywords\": [\"direct mail\", \"postcards\", \"mailers\"]}\n      ]\n    },\n    {\n      \"name\": \"Data & Intent Signals\",\n      \"faqs\": [\n        {\"id\": \"faq-010\", \"question\": \"Where does Retarget IQ source data?\", \"answer\": \"Proprietary provider that supplies Fortune 100/500 companies. One of only three globally licensed to use this enterprise-grade source. Plus waterfall enrichment from 200+ data lakes.\", \"keywords\": [\"data source\", \"data quality\", \"Fortune 500\", \"enterprise data\"]},\n        {\"id\": \"faq-011\", \"question\": \"How does data compare to Audience Lab?\", \"answer\": \"Unlike competitors using 555 data (same as ZoomInfo, Apollo, Seamless), Retarget IQ uses exclusive enterprise provider. Results: better accuracy, 90%+ Meta match rates, more complete intent signals. Customers report switching from Audience Lab for better quality.\", \"keywords\": [\"Audience Lab\", \"competitors\", \"ZoomInfo\", \"Apollo\"]},\n        {\"id\": \"faq-012\", \"question\": \"How does intent data collection work?\", \"answer\": \"Tracks 80%+ of US adult population, monitors 10 billion+ searches/signals daily. Collected through website partnerships, tracking pixels, surveys, and cookie-based tracking. Uses 200+ data lakes.\", \"keywords\": [\"data collection\", \"tracking\", \"behavioral data\", \"identity graph\"]},\n        {\"id\": \"faq-013\", \"question\": \"Are phone numbers accurate?\", \"answer\": \"Varying accuracy rates. Run through DNC list and use verification service before calling. Emails typically have higher accuracy and better response rates.\", \"keywords\": [\"phone numbers\", \"accuracy\", \"verification\", \"cold calling\"]},\n        {\"id\": \"faq-014\", \"question\": \"How often is intent data updated?\", \"answer\": \"Continuously updated based on real-time behavioral signals. Each query returns current intent for that topic within your timeframe.\", \"keywords\": [\"data freshness\", \"updates\", \"real-time\"]},\n        {\"id\": \"faq-015\", \"question\": \"Can I target by specific keywords?\", \"answer\": \"V1: Select from ~50,000 pre-defined intent topics. V2 (Feb 15th): Free-form text entry for any custom keyword or phrase.\", \"keywords\": [\"keywords\", \"topics\", \"custom searches\", \"V2\"]},\n        {\"id\": \"faq-016\", \"question\": \"Does it include LinkedIn profiles?\", \"answer\": \"Yes, when available. More prevalent for B2B intent searches. Included in CSV exports and API responses.\", \"keywords\": [\"LinkedIn\", \"social profiles\", \"B2B data\"]},\n        {\"id\": \"faq-017\", \"question\": \"What is the Meta ads match rate?\", \"answer\": \"Over 90% match rates using SHA256 email hashing - significantly higher than industry average.\", \"keywords\": [\"Meta ads\", \"Facebook\", \"match rate\"]}\n      ]\n    },\n    {\n      \"name\": \"Pricing & Plans\",\n      \"faqs\": [\n        {\"id\": \"faq-018\", \"question\": \"What does the standard license cost?\", \"answer\": \"Quarterly: $497/month ($1,491/quarter). Annual: $407/month ($4,884/year). Both include unlimited audiences, unlimited records, 10 Super Pixels. Pricing locked in permanently.\", \"keywords\": [\"pricing\", \"cost\", \"standard plan\", \"quarterly\", \"annual\"]},\n        {\"id\": \"faq-019\", \"question\": \"How much does API access cost?\", \"answer\": \"$297/month (month-to-month), $249/month (quarterly), $200/month (annual). No rate limits except 3,000 calls/second.\", \"keywords\": [\"API\", \"API pricing\", \"API cost\", \"rate limits\"]},\n        {\"id\": \"faq-020\", \"question\": \"What is White Label pricing?\", \"answer\": \"$3,000/month includes 10 client licenses. Additional licenses $100/month each. All include full platform access, API, unlimited data, Super Pixels.\", \"keywords\": [\"white label\", \"reseller\", \"agency\", \"sub-accounts\"]},\n        {\"id\": \"faq-021\", \"question\": \"Can I upgrade to White Label later?\", \"answer\": \"Yes. Previous payments credited toward White Label. Keep your locked-in pricing.\", \"keywords\": [\"upgrade\", \"plan change\", \"credit\"]},\n        {\"id\": \"faq-022\", \"question\": \"Will prices increase with V2?\", \"answer\": \"Yes. Expected increase from $497 to $750-$999/month after Feb 15th. Anyone who signs up before is grandfathered permanently.\", \"keywords\": [\"price increase\", \"V2 pricing\", \"grandfathered\"]},\n        {\"id\": \"faq-023\", \"question\": \"Can I add API access later?\", \"answer\": \"Yes. Prorated payment link for remaining billing cycle, then auto-renews with API included.\", \"keywords\": [\"add API\", \"prorated\"]},\n        {\"id\": \"faq-024\", \"question\": \"Any hidden fees?\", \"answer\": \"No. Only optional extras: direct mail (~$0.90/piece), extra Super Pixels ($10 each), API access.\", \"keywords\": [\"hidden fees\", \"additional costs\"]},\n        {\"id\": \"faq-025\", \"question\": \"Payment plans available?\", \"answer\": \"Yes. Klarna financing available - pay in installments while getting quarterly discount.\", \"keywords\": [\"Klarna\", \"payment plan\", \"financing\"]}\n      ]\n    },\n    {\n      \"name\": \"White Label & Agency\",\n      \"faqs\": [\n        {\"id\": \"faq-026\", \"question\": \"What is included in White Label?\", \"answer\": \"Custom branding/logo, custom domain (app.yourdomain.com), 10 client sub-accounts, full API access, admin panel, custom limits per client, DNS setup help, dedicated Slack support with engineers.\", \"keywords\": [\"white label features\", \"branding\", \"custom domain\", \"admin panel\"]},\n        {\"id\": \"faq-027\", \"question\": \"Will clients see Retarget IQ branding?\", \"answer\": \"No. Clients only see your brand - login page, dashboard, emails, all platform elements. No Retarget IQ references visible.\", \"keywords\": [\"white label branding\", \"client facing\"]},\n        {\"id\": \"faq-028\", \"question\": \"How do I set client pricing?\", \"answer\": \"You set your own pricing completely. Bill clients through your payment processor. Charge per seat, per record, flat fees, or any model.\", \"keywords\": [\"client pricing\", \"agency pricing\", \"billing\"]},\n        {\"id\": \"faq-029\", \"question\": \"Can I manage client accounts?\", \"answer\": \"Both options: manage everything yourself and deliver reports, or give clients login access. Use 'impersonate' feature to log in as any client.\", \"keywords\": [\"client management\", \"access control\", \"impersonate\"]},\n        {\"id\": \"faq-030\", \"question\": \"Stripe integration for White Label?\", \"answer\": \"Yes. API allows integration with Stripe or other processors. Automate billing, track usage, charge automatically.\", \"keywords\": [\"Stripe integration\", \"payment processing\"]},\n        {\"id\": \"faq-031\", \"question\": \"What support do White Label partners get?\", \"answer\": \"Dedicated Slack channel with engineering team. Response within 24 hours. Engineers can log into client accounts to troubleshoot.\", \"keywords\": [\"white label support\", \"Slack channel\"]},\n        {\"id\": \"faq-032\", \"question\": \"White Label setup time?\", \"answer\": \"Basic provisioning: 24 hours. Custom branding: 1-2 business days. DNS setup: 24-48 hours. Full setup: 3-5 business days.\", \"keywords\": [\"setup time\", \"onboarding\"]}\n      ]\n    },\n    {\n      \"name\": \"Integrations & API\",\n      \"faqs\": [\n        {\"id\": \"faq-033\", \"question\": \"What integrations are available?\", \"answer\": \"Meta/Facebook Ads, Google Ads, HubSpot, GoHighLevel, Salesforce, Klaviyo, Mailchimp, Pipedrive, Slack, Beehive, Fresh Sales, Zoho CRM. LinkedIn Ads and TikTok Ads coming in V2.\", \"keywords\": [\"integrations\", \"CRM\", \"ad platforms\"]},\n        {\"id\": \"faq-034\", \"question\": \"How to connect Meta/Facebook Ads?\", \"answer\": \"Create custom audience in Meta Business Manager. In Retarget IQ, select 'Send to Meta', enter audience name, ad account ID, audience ID. Schedule automatic updates.\", \"keywords\": [\"Meta integration\", \"Facebook Ads\", \"audience sync\"]},\n        {\"id\": \"faq-035\", \"question\": \"What can the API do?\", \"answer\": \"Pull audiences, access visitor identification, create queries, schedule refreshes, retrieve data fields, push to integrations, manage multiple instances. AI-optimized docs.\", \"keywords\": [\"API features\", \"API capabilities\"]},\n        {\"id\": \"faq-036\", \"question\": \"API rate limits?\", \"answer\": \"Only 3,000 calls/second limit. No limits on total daily calls, records pulled, or data accessed.\", \"keywords\": [\"API limits\", \"rate limits\"]},\n        {\"id\": \"faq-037\", \"question\": \"Multiple audiences to same ad account?\", \"answer\": \"Yes. V1: Separate website instances per connection. V2: Multiple audiences to single ad account.\", \"keywords\": [\"multiple audiences\", \"ad account syncs\"]},\n        {\"id\": \"faq-038\", \"question\": \"Enrich existing CRM contacts?\", \"answer\": \"Yes. Connect to HubSpot, Salesforce, other CRMs. Enrich with intent signals, demographics, behavioral data. Also via API.\", \"keywords\": [\"data enrichment\", \"CRM enrichment\"]}\n      ]\n    },\n    {\n      \"name\": \"Pixel & Tracking\",\n      \"faqs\": [\n        {\"id\": \"faq-039\", \"question\": \"How to install the Super Pixel?\", \"answer\": \"Login > Websites > Add domain > Copy pixel code > Paste in header before </head>. For WordPress/Shopify/Wix use header injection. Data starts within hours.\", \"keywords\": [\"pixel installation\", \"install pixel\", \"tracking code\"]},\n        {\"id\": \"faq-040\", \"question\": \"Pixel not collecting data?\", \"answer\": \"Common issues: 1) Not on all pages (check global header), 2) DNS validation needed (contact support), 3) Cookie policies blocking, 4) Need 24-48 hours. Contact support with domain.\", \"keywords\": [\"pixel troubleshooting\", \"pixel not working\", \"no data\"]},\n        {\"id\": \"faq-041\", \"question\": \"Visitor identification rate?\", \"answer\": \"40-70% depending on traffic source. SEO/organic: 40-50%. Paid ads: 50-60%.\", \"keywords\": [\"identification rate\", \"match rate\", \"visitor percentage\"]},\n        {\"id\": \"faq-042\", \"question\": \"Can I filter identified visitors?\", \"answer\": \"Yes. Filter by city, state, zip, age, gender, income, company, pages visited, traffic source, and buying intent signals.\", \"keywords\": [\"visitor filters\", \"demographic filters\"]},\n        {\"id\": \"faq-043\", \"question\": \"Track competitor website visitors?\", \"answer\": \"Coming in V2. Identify visitors to competitor sites without installing your pixel there. Pricing TBD.\", \"keywords\": [\"competitor tracking\", \"competitive intelligence\"]},\n        {\"id\": \"faq-044\", \"question\": \"Data retention after cancellation?\", \"answer\": \"Historical data only accessible with active subscription. Export regularly as CSV before canceling.\", \"keywords\": [\"data retention\", \"cancellation\"]}\n      ]\n    },\n    {\n      \"name\": \"Audience Building\",\n      \"faqs\": [\n        {\"id\": \"faq-045\", \"question\": \"Add multiple intent topics to one audience?\", \"answer\": \"No - create separate audiences per topic and test individually. Multiple topics dilute targeting. Find overlap via CSV/API.\", \"keywords\": [\"multiple topics\", \"audience strategy\"]},\n        {\"id\": \"faq-046\", \"question\": \"How to find right intent topics?\", \"answer\": \"~50,000 topics available. Download list, paste into ChatGPT with business description to identify top 5-10 relevant topics. Or search by keyword in platform.\", \"keywords\": [\"find topics\", \"topic selection\"]},\n        {\"id\": \"faq-047\", \"question\": \"What is Advanced Search?\", \"answer\": \"Static B2B lists without intent data - like LinkedIn Boolean search. Find all CEOs at medical companies with 10+ employees in Texas. Firmographic/demographic only.\", \"keywords\": [\"Advanced Search\", \"static lists\", \"Boolean search\"]},\n        {\"id\": \"faq-048\", \"question\": \"Audience processing time?\", \"answer\": \"15-20 minutes typically. Small (<10K records): 5-10 min. Very large: 20-30 min. Notification when complete.\", \"keywords\": [\"processing time\", \"build time\"]},\n        {\"id\": \"faq-049\", \"question\": \"Save and reuse queries?\", \"answer\": \"Yes. Save as query, refresh on-demand or schedule automatically (daily/weekly). Set once, auto-generate fresh leads.\", \"keywords\": [\"saved queries\", \"reusable audiences\"]}\n      ]\n    },\n    {\n      \"name\": \"Technical Support\",\n      \"faqs\": [\n        {\"id\": \"faq-050\", \"question\": \"What support is included?\", \"answer\": \"Dedicated Slack channel, response under 24 hours. Send screen recordings, questions, issues. Engineers can log into your account. White Label gets priority.\", \"keywords\": [\"support\", \"help\", \"Slack\"]},\n        {\"id\": \"faq-051\", \"question\": \"How quickly can I start?\", \"answer\": \"Most accounts provisioned within hours, 24 hours max. Login credentials via email. White Label: 24 hours basic, 3-5 days full branding/DNS.\", \"keywords\": [\"onboarding\", \"getting started\"]},\n        {\"id\": \"faq-052\", \"question\": \"What happens when V2 launches Feb 15th?\", \"answer\": \"Major upgrade: improved UI, free-form keyword search, more integrations, expanded global data (Canada, Latin America, South America). Existing customers auto-upgraded at current pricing.\", \"keywords\": [\"V2\", \"platform update\", \"February 15\"]}\n      ]\n    }\n  ]\n};\n\n// Get search query from tool input\nconst query = $input.first().json.query || $input.first().json.input || '';\nconst queryLower = query.toLowerCase();\nconst queryWords = queryLower.split(/\\s+/).filter(w => w.length > 2);\n\n// Search function\nconst results = [];\n\nfor (const category of knowledgeBase.categories) {\n  for (const faq of category.faqs) {\n    let score = 0;\n    \n    // Keyword matches (highest weight)\n    for (const keyword of faq.keywords) {\n      const keywordLower = keyword.toLowerCase();\n      if (queryLower.includes(keywordLower)) {\n        score += 5;\n      } else {\n        for (const word of queryWords) {\n          if (keywordLower.includes(word) || word.includes(keywordLower)) {\n            score += 2;\n          }\n        }\n      }\n    }\n    \n    // Question text matches\n    const questionLower = faq.question.toLowerCase();\n    for (const word of queryWords) {\n      if (questionLower.includes(word)) {\n        score += 1;\n      }\n    }\n    \n    // Answer text matches (lower weight)\n    const answerLower = faq.answer.toLowerCase();\n    for (const word of queryWords) {\n      if (answerLower.includes(word)) {\n        score += 0.5;\n      }\n    }\n    \n    if (score > 0) {\n      results.push({\n        category: category.name,\n        question: faq.question,\n        answer: faq.answer,\n        score: score\n      });\n    }\n  }\n}\n\n// Sort by score and return top 5\nconst topResults = results.sort((a, b) => b.score - a.score).slice(0, 5);\n\nif (topResults.length === 0) {\n  return 'No specific information found. Offer to connect user with support team for more details.';\n}\n\n// Format results\nlet output = `Found ${topResults.length} relevant FAQ(s):\\n\\n`;\nfor (let i = 0; i < topResults.length; i++) {\n  const r = topResults[i];\n  output += `[${i + 1}] ${r.category}\\nQ: ${r.question}\\nA: ${r.answer}\\n\\n`;\n}\n\nreturn output;"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [560, 500],
+      "id": "m3n4o5p6-tool",
+      "name": "search_knowledge_base"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ response: $json.output || $json.text || 'Sorry, I could not generate a response. Please try again.' }) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [740, 300],
+      "id": "q7r8s9t0-respond",
+      "name": "Respond to Chat"
+    }
+  ],
+  "connections": {
+    "Chat Webhook": {
+      "main": [
+        [
+          {
+            "node": "RetargetIQ Support Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RetargetIQ Support Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter LLM": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "RetargetIQ Support Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search_knowledge_base": {
+      "ai_tool": [
+        [
+          {
+            "node": "RetargetIQ Support Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

@@ -1,0 +1,1020 @@
+{
+  "meta": {
+    "generated_at": "2026-01-31T21:55:50.125255",
+    "total_faqs": 127,
+    "total_threads_processed": 299
+  },
+  "categories": [
+    {
+      "name": "Audience Creation & Targeting",
+      "faq_count": 15,
+      "faqs": [
+        {
+          "id": "faq-004",
+          "question": "We’ve access to the API but does it only provide visitors details or it can\nquery the info as in the spreadsheet to filter by category or topic in\norder to get output of B2B or B2C leads info?\n\nWe’re looking for the latter part",
+          "answer": "Currently only website visitor info. Upon release of V2 (planned for Feb \n15th launch date) will also be able to do all query and audience data pulls \ncompletely automated fully thru api.",
+          "keywords": [
+            "audience",
+            "api",
+            "data"
+          ],
+          "source": "email-19c033f0"
+        },
+        {
+          "id": "faq-006",
+          "question": "Perhaps I configured this improperly? My Facebook Audience did not update\ntoday",
+          "answer": "Had our engineering team check it should be working fine it looks like. We checked your account.\n\nLet us know if you have any other issues",
+          "keywords": [
+            "audience",
+            "facebook",
+            "account"
+          ],
+          "source": "email-19bebee0"
+        },
+        {
+          "id": "faq-007",
+          "question": "How do I search so that I get actual b2b saas companies",
+          "answer": "For B2B SaaS, make sure you are filtering by the right SIC codes or\nindustry terms in the B2B Intent section. That should tighten up the\nresults significantly.\n\nHow are you searching/pulling the list currently?",
+          "keywords": [
+            "intent"
+          ],
+          "source": "email-19bf1f9e"
+        },
+        {
+          "id": "faq-009",
+          "question": "If you want to add more topics, that's a separate audience each time? Is\nthere a way to combine audiences? Or only via export?\n\nSorry for all the questions",
+          "answer": "Currently you can search by one topic at a time but upon releasing our V2\nplatform we are planning to have multi search enabled along with specific\nsearch terms that people are looking for ie \"roofers near me\" or \"best\nplumbers near me\" etc.\n\nPlease let me know if this makes sense!",
+          "keywords": [
+            "audience",
+            "export"
+          ],
+          "source": "email-19becd84"
+        },
+        {
+          "id": "faq-012",
+          "question": "Do you guys\nalso do that?\n\nGreg",
+          "answer": "I would be happy to speak to our dev team about this as I do know they are\nplanning to release exact keywords just as audience lab did with their V2\nplatform release coming up here in the next two weeks. Let me see what\nupdate I can get from them on these topics!",
+          "keywords": [
+            "audience"
+          ],
+          "source": "email-19be6d45"
+        },
+        {
+          "id": "faq-013",
+          "question": "Another request I might have is: can we get a list of all of\nthe keywords you have so we can use that to study and use AI to help us\npick audiences for our searches? We're not just searching in the dark",
+          "answer": "No problem, here is a full list of up to date searches -\nhttps://docs.google.com/spreadsheets/d/1vwSp0SGwpbxPIUBE7CKQ55F3bIQpro3UDSuP3LB93xg/edit?gid=1825796279#gid=1825796279",
+          "keywords": [
+            "audience",
+            "google"
+          ],
+          "source": "email-19be6d45"
+        },
+        {
+          "id": "faq-015",
+          "question": "Where's the documentation / knowledge base?\n\nI'm specifically looking for the FB integration where i can send my RIQ\naudience to a FB audience so that I can share that with an ads manager",
+          "answer": "I would manually download these lists and have your ads manager manually\nupload them until we release our V2 platform that will allow you to hook\nthese into your meta account. Please let me know if you have any issues\ndownloading the lists!",
+          "keywords": [
+            "audience",
+            "integration",
+            "meta",
+            "account"
+          ],
+          "source": "email-19bca1ac"
+        },
+        {
+          "id": "faq-016",
+          "question": "If so,\ncould you please share how to do that or point me to the steps?\n\nThanks in advance for your help!",
+          "answer": "Totally. Drop the drop down list of filters. Select zip code then select condition “in” and you can either list zip codes out separated by a comma or just put all (or have Chat gpt) put all the zip codes in a excel or CSV file. One zip code per cell going down column 1 of excel sheet (one zip code per cell)",
+          "keywords": [
+            "csv",
+            "zip code"
+          ],
+          "source": "email-19bc0efc"
+        },
+        {
+          "id": "faq-017",
+          "question": "Other dilemma that I have right now is I still\nneed to filter out DNC contacts on the list that is being exported on\nRetarget, is there a way for me to filter this out before exporting?\n\n-best Yf\n\n\nOn Thu, Jan 15, 2026 at 9:55 AM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "Not right now on the DNC side.\n\nStandard practice is to run your lists thru DNC list.",
+          "keywords": [
+            "export"
+          ],
+          "source": "email-19bc0efc"
+        },
+        {
+          "id": "faq-024",
+          "question": "Hey Nate, just checking to see if you got an answer on the \"email last\nseen\" filter?\n\nOn Fri, Nov 21, 2025 at 2:19 PM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "Yes it’s exactly what you thought it was",
+          "keywords": [],
+          "source": "email-19aa7fcb"
+        },
+        {
+          "id": "faq-044",
+          "question": "one last thing, are there limits to how many 'audiences' one can build or\nhow many records i can grab from each audience?\n\nalso, it would be great to know if you are able to find ecomm brands",
+          "answer": "Its unlimited audiences and records currently. Very soon this is going to\nchange. For ecom it's best to use ecom list building best practice in the\nindustry which is pulling list of ecom stores with store leads then take\nall those domains it gives you and enrich it with our tool for decision\nmakers, their emails and their mobile numbers.\n\nOn Sun, Oct 26, 2025 at 11:05 AM Nicolas Larez <nick@coreconversions.net>\nwrote:",
+          "keywords": [
+            "audience"
+          ],
+          "source": "email-19a0d776"
+        },
+        {
+          "id": "faq-050",
+          "question": "Danny are you guys free Tuesday afternoon for us to show you the website identification tool with all your actual data in it?\n\n\nBest\nNate Calhoun",
+          "answer": "I don’t think Nate saw your previous email come through when he emailed\nyou.\n\nThe Audience Builder lets you pull unlimited B2B data that is the same as\nApollo or Zoominfo but it is an unlimited list for the $497 instead of\nhaving to pay $200 for 10k people and have it be limited.",
+          "keywords": [
+            "audience",
+            "data"
+          ],
+          "source": "email-1995de63"
+        },
+        {
+          "id": "faq-076",
+          "question": "I do have a concern that RetargetIQ is not yet able to API integrate with Meta-   Can you advise as to when this will happen?\n \nI want to be sure I understand where your platform stands with this integration, and can you share a list of all integrations Retarget IQ currently can align, as well as a future state of upcoming integrations and when those will go live",
+          "answer": "Thanks for the note — really appreciate you sharing your interest in moving\nforward.\n\nGreat timing as well, as I just received an update on this. We are\nreleasing a *native Meta audience integration* that allows you to push\naudiences directly from RetargetIQ into Meta Ads *within the platform* (no\nmanual exports required). This is scheduled to go live *next week*. Once\nlive, you’ll be able to build, refresh, and sync audiences natively.",
+          "keywords": [
+            "audience",
+            "api",
+            "integration",
+            "meta",
+            "export"
+          ],
+          "source": "email-19bc7f67"
+        },
+        {
+          "id": "faq-083",
+          "question": "Can you explain how this process works and if there’s anything I need to do on my end?\n\nThank you in advance for your help",
+          "answer": "you basically create an intent audience. Then go to all audiences click preview and click download all and name the file. Then go to saved queries in the dropdown and schedule it to run daily or at whatever interval you want. Then daily whenever you want fresh data you just login and download the file and manually upload it to a Facebook custom audience.\n\nCcing in Cindy to help with additional support if needed so please reply all to threads.",
+          "keywords": [
+            "audience",
+            "data",
+            "facebook",
+            "intent",
+            "login"
+          ],
+          "source": "email-19bb8ea8"
+        },
+        {
+          "id": "faq-108",
+          "question": "How does Super Pixel work?",
+          "answer": "We have our licenses that would essentially allow for you to control and manage every element of the data discovery, be it with our Super Pixel or your audience building.",
+          "keywords": [
+            "audience",
+            "pixel",
+            "data"
+          ],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "Data Enrichment & Pulls",
+      "faq_count": 17,
+      "faqs": [
+        {
+          "id": "faq-008",
+          "question": "How are you searching/pulling the list currently?\n\nAny intent topics or static data?\n\n\nThanks\nCindy",
+          "answer": "Can you share a loom of you pulling the list you are trying to pull and\nplease as well mention in the video what list/criteria you are trying to\npull. Our platform is mainly an intent data platform but you can still pull\nstatic lists. We have the same exact data and provider that zoom info uses.\nSo this will just help us figure out what is off in the search parameters.\nTo be honest a lot of tools such as zoom info and or apollo.io are\ndifficult to pull Saas or ecommerce businesses via search dude to that\nbeing a classification of business but curious how you are doing it. So I\ncan help.",
+          "keywords": [
+            "data",
+            "intent"
+          ],
+          "source": "email-19bf1f9e"
+        },
+        {
+          "id": "faq-031",
+          "question": "Hey Nate,\n\nI have a potential client that would like to find out if I can get a list\nof\nPre-foreclusres\nTax Liens\nTax Deeds\nDelinquent Taxes\n\nIs that possible?\n\nOr home sellers on the market more than 120 days",
+          "answer": "Curious if the client can pull this and if so how?\n\n---------- Forwarded message ---------\nFrom: John Foster <john.foster1012@gmail.com>\nDate: Fri, Nov 14, 2025 at 1:08 PM\nSubject: Client Question, Pre-Foreclosures?\nTo: Retarget IQ Team <info@retargetiq.com>",
+          "keywords": [],
+          "source": "email-19a84328"
+        },
+        {
+          "id": "faq-034",
+          "question": "Here you go:\n CFO Services.csv.zip\n<https://drive.google.com/file/d/1sXqD2Y143D42sdiO87zBuCBi3CDmHixJ/view?usp=drive_web>",
+          "answer": "Hey Sami and Grace can you try to pull these 3 lists. Client is pulling \nthem himself using parameters in photo above but is getting a lot of “old \nleads” according to them. Wondering if there is better way to pull this \nlist then described.",
+          "keywords": [
+            "google",
+            "csv"
+          ],
+          "source": "email-19a70a7b"
+        },
+        {
+          "id": "faq-040",
+          "question": "do you guys do unlimited credits?",
+          "answer": "Yes unlimited website identification, B2B data pulls (like apollo, zoom info, listkit), B2C intent data, B2B intent data and unlimited personal cell number enrichment.",
+          "keywords": [
+            "data",
+            "intent"
+          ],
+          "source": "email-19a0d776"
+        },
+        {
+          "id": "faq-046",
+          "question": "RTIQ B2B Static Demo.mp4\n<https://drive.google.com/file/d/1gzKcls0RYFCqAdaUXI3YyY0Ut6u6Vle7/view?usp=drive_web>\n\nOn Fri, Oct 10, 2025 at 10:33 AM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "Begin forwarded message:\n\n*From:* Grace Kilander <grace@datashopper.com>\n*Date:* October 13, 2025 at 12:34:13 PM PDT\n*To:* Retarget IQ Team <info@retargetiq.com>, Thomas Rudy \n<thomas@datashopper.com>\n*Subject:* *Re: Data B2B static*",
+          "keywords": [
+            "data",
+            "google"
+          ],
+          "source": "email-199cf2f4"
+        },
+        {
+          "id": "faq-047",
+          "question": "SEO: ~20%\n\n\n RetargetIQ- Ad Agencies enrichment - with Mobiles.csv\n<https://drive.google.com/open?id=1RDSVhoGWYEmJtNoTedpEWd_gA9vIrY4X>\n\n RetartgetIQ- webdev agencies enrichment with mobile.csv\n<https://drive.google.com/open?id=1TdAF56hUC14Z_lP-Aj-CdWDGjwirnWFj>\n\n RetargetIQ - Creative Agencies enrichment with mobile - RetargetIQ -\nCreative Agencies enrichment..",
+          "answer": "Begin forwarded message:\n\n*From:* Grace Kilander <grace@datashopper.com>\n*Date:* October 9, 2025 at 8:41:22 PM PDT\n*To:* Retarget IQ Team <info@retargetiq.com>\n*Cc:* Rudy Thomas <thomas@datashopper.com>\n*Subject:* *Re: Mobile number enrichment*",
+          "keywords": [
+            "data",
+            "google",
+            "csv"
+          ],
+          "source": "email-199ae009"
+        },
+        {
+          "id": "faq-053",
+          "question": "RetargetIQ - Cyber security.csv\n<https://drive.google.com/open?id=1fIpbCPSagUTfentAuFPuACFsbrOKeq9Q>\n\n\nOn Fri, Sep 19, 2025 at 9:11 AM Grace Kilander <grace@datashopper.com>\nwrote:",
+          "answer": "Hey Grace any update on that enrichment list? You mentioned we would \nreceive it on Friday by end of day. Client is hounding us for it. Can you \nprovide updated timeline?",
+          "keywords": [
+            "data",
+            "google",
+            "csv"
+          ],
+          "source": "email-1995dbb5"
+        },
+        {
+          "id": "faq-054",
+          "question": "RetargetIQ - enrichment.csv\n<https://drive.google.com/open?id=16NRe7m0VmlxkFrixqmaPx61hxs9zSwlp>\n\n\nOn Wed, Sep 24, 2025 at 7:54 AM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "Hey Grace that enrichment list was just 14k emails found. Wanted to confirm \ncould only find/enrich 14k emails from the roughly 250k sized list we sent.",
+          "keywords": [
+            "google",
+            "csv"
+          ],
+          "source": "email-1995dbb5"
+        },
+        {
+          "id": "faq-057",
+          "question": "Hi RetargetIQ Team,\n\nJust want to clarify, these two separate requests?\n\n1",
+          "answer": "So the first email is not intent data just b2b static data list. The 2nd \nlist of all the different types of insurance that one is intent b2b and 30 \nday period is fine.",
+          "keywords": [
+            "data",
+            "intent"
+          ],
+          "source": "email-1993a969"
+        },
+        {
+          "id": "faq-058",
+          "question": "RetargetIQ - B2B Construction .csv\n<https://drive.google.com/open?id=1lmF-Sl6OUO5sqZ0rKT9oQ-jzgjuMA9Ke>\n\n RetargetIQ - B2B Construction Companies Insurance.csv\n<https://drive.google.com/open?id=1DI_I5_tPIGnveirV3yPpmzZyD15bNpNT>\n\n\nOn Mon, Sep 15, 2025 at 11:24 AM Grace Kilander <grace@datashopper.com>\nwrote:",
+          "answer": "The B2B construction is static B2B list\nAnd\nThe B2B Construction companies insurance is the intent B2B data right?",
+          "keywords": [
+            "data",
+            "google",
+            "intent",
+            "csv"
+          ],
+          "source": "email-1993a969"
+        },
+        {
+          "id": "faq-081",
+          "question": "Sounds like it's best to always have that checked off to get max data?\n\nCary",
+          "answer": "It’s just b2c don’t care about business info or associated companies. Where \nb2b companies do. So most b2b companies use that toggle and b2c companies \ndon’t usually want any of that other data.",
+          "keywords": [
+            "data"
+          ],
+          "source": "email-19bc2ce7"
+        },
+        {
+          "id": "faq-086",
+          "question": "Is it still available for the 497/month",
+          "answer": "We no longer are offering that grandfathered-in deal for unlimited \neverything for $497/m since our intent data lead scoring came out. But I’ll \nhonor it since we talked before that came out and I know Christmas time is \nbusy for everyone.\n\nHere is the payment link:",
+          "keywords": [
+            "data",
+            "intent"
+          ],
+          "source": "email-19b28923"
+        },
+        {
+          "id": "faq-087",
+          "question": "Can you confirm the system is set up to pull user data?\n\nCheers,\nRod\n\n[cid:image002.png@01DC84B6.D25D81D0]\n\n\n\n\n\n\n\n\n\n\nPrivilge and confidential communication:\nThe information contained in this email communication is confidential information intended only for the use of the addressee",
+          "answer": "No worries I’m having my support team looking into your account and will\nget back to you with an answer ASAP!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [
+            "data",
+            "account"
+          ],
+          "source": "email-19b28923"
+        },
+        {
+          "id": "faq-093",
+          "question": "Does this help answer your question",
+          "answer": "what fields are you trying to enrich for and what existing fields do you have already that you are enriching off of.",
+          "keywords": [],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-101",
+          "question": "Is there any way that obviously I want to like test it out for a little bit?",
+          "answer": "We can't give free access or data.",
+          "keywords": [
+            "data"
+          ],
+          "source": "call-transcript-aaron-s"
+        },
+        {
+          "id": "faq-114",
+          "question": "How does Intent Data work?",
+          "answer": "So this is where we're generating a lot of our intent data, is looking at someone's consistent behaviors and what they're doing and Then this can actually map to our own repository of information that then allows for us to look at that as an intent signal.",
+          "keywords": [
+            "data",
+            "intent"
+          ],
+          "source": "call-transcript-aaron-s"
+        },
+        {
+          "id": "faq-125",
+          "question": "What makes Retarget IQ different from competitors?",
+          "answer": "Our technical co founder began his partnership with Fortune 100 companies as well as a publicly traded data company that we partnered with.",
+          "keywords": [
+            "data"
+          ],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "White Label Setup",
+      "faq_count": 5,
+      "faqs": [
+        {
+          "id": "faq-059",
+          "question": "Has there been a change in access\npermissions or settings on your end?\n\nLet me know—thanks",
+          "answer": "Begin forwarded message:\n\n*From:* Retarget IQ Team <info@retargetiq.com>\n*Date:* July 14, 2025 at 11:38:25 AM PDT\n*To:* Rudy Lindsey <lindsey@datashopper.com>\n*Cc:* Grace Kilander <grace@datashopper.com>, sami@datashopper.com, Rudy \nThomas <thomas@datashopper.com>, alex@retargetiq.clm\n*Subject:* *URGENT Logo Replacement for Whitelabel*",
+          "keywords": [
+            "data"
+          ],
+          "source": "email-1980a3b2"
+        },
+        {
+          "id": "faq-061",
+          "question": "Where do you want the logo? \n\n\nLindsey Rudy \n\nCo Founder\n\nLindsey@datashopper.com <mailto:Lindsey@datashopper.com>\nBook a Meeting <https://app.usemotion.com/meet/lindsey-rudy/620nbtq>\n￼",
+          "answer": "No worries, I was under the impression that we would be able to put a log\nin link or something of that nature on our website where users are able to\ncome to our site and immediately log into the datashopper white label\nplatform. But I’m not sure if we can integrate that in a special way or if\nwe can just link it to our white label platform?\n\nOn Tue, Jul 8, 2025 at 11:17 AM Lindsey Rudy <lindsey@datashopper.com>\nwrote:",
+          "keywords": [
+            "white label",
+            "data"
+          ],
+          "source": "email-197ea486"
+        },
+        {
+          "id": "faq-078",
+          "question": "You have a video of the white label? You mentioned you could send one to \nshow a potential client and just get rid of your logo",
+          "answer": "Good question — and I just want to clarify expectations upfront.\n\nWe don’t currently have a demo video of the platform with our branding\nremoved. The reason for that is that the *white-label environment only\nexists once you’re actually set up as a white-label partner*.",
+          "keywords": [
+            "white label"
+          ],
+          "source": "email-19bc32bc"
+        },
+        {
+          "id": "faq-079",
+          "question": "Does it look basically the same way as my dashboard looks? If yes, then I \ncan just kinda show a demo that way",
+          "answer": "Yes, it does. But once white labeled it will have your branding and colors\nand logo. Also we are having the biggest update in a year to our platform\nand data coming shortly in the next few weeks the release of our V2\nPlatform. Which is going to allow even more integrations, better\nemail/phone verification, even cleaner interface etc.",
+          "keywords": [
+            "white label",
+            "integration",
+            "data"
+          ],
+          "source": "email-19bc32bc"
+        },
+        {
+          "id": "faq-109",
+          "question": "How does White Label work?",
+          "answer": "We also have the ability to have a white labeled version where you can have additional seats in the sense of each person has their own account.",
+          "keywords": [
+            "white label",
+            "account"
+          ],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "Pixel/Tracking Integration",
+      "faq_count": 4,
+      "faqs": [
+        {
+          "id": "faq-020",
+          "question": "Do you have a timeline for when you can have your Pixel\ninstalled?\n\nBest,\n\nAdrie\n\n*Adrie Puzey*\nClient Partner\n*e: **v.adrienne.puzey@reddit.com* <v.adrienne.puzey@reddit.com>\n*548 Market Street #16093, San Francisco, CA 94104-5401*\n\nOn Fri, Dec 05, 2025 at 3:07 PM Adrie Puzey <v.adrienne.puzey@reddit.com>\nwrote:",
+          "answer": "We are working on setting up some sales processes internally so we will be\nholding off on this until we can get that straightened out. I will reply\nback to this thread for us to get rolling again!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [
+            "pixel"
+          ],
+          "source": "email-19ac26cd"
+        },
+        {
+          "id": "faq-037",
+          "question": "2025-10-23 - Retarget IQ - How B2B Contact Data Sets the Stage for Q4\nOutreach\n2025-10-23 - Retarget IQ - Choosing a Marketing Data Provider for Seasonal\nCampaigns\n2025-10-23 - Retarget IQ - Business Intelligence Data for Smarter Fall\nDecisions\n2025-10-23 - Retarget IQ - Business Intelligence Data for Smarter Fall\nDecisions\n\nCould you please confirm which article is the fourth one that needs\npublishing? :) Thank you",
+          "answer": "On Oct 27, 2025, at 2:53 PM, Ariane Ponaya - Ranked \n<accounts@tryranked.com> wrote:\n\n﻿ Ranked \nHello Nate,",
+          "keywords": [
+            "data",
+            "account"
+          ],
+          "source": "email-19a19c2b"
+        },
+        {
+          "id": "faq-082",
+          "question": "Can\nyou confirm and share the payment link?\n\nPradeep\n\nOn Mon, Jan 12, 2026 at 1:08 PM Fred from Fireflies.ai <fred@fireflies.ai>\nwrote:",
+          "answer": "For sure. That core plan will be grandfathered in, unlimited data no caps \nat all, includes 5 super pixels/sub accounts/websites. Once you take care \nof payment let me know and we’ll send over the login credentials and your \napi key.\n\nPayment Link: https://buy.stripe.com/3cI28sdaYfG6c9q6iR4gg05",
+          "keywords": [
+            "pixel",
+            "api",
+            "data",
+            "login",
+            "account"
+          ],
+          "source": "email-19bb409e"
+        },
+        {
+          "id": "faq-113",
+          "question": "How does Super Pixel work?",
+          "answer": "So if someone visits a website where we're able to, with our super Pixel, not only capture their income net worth finance, do they have kids?",
+          "keywords": [
+            "pixel"
+          ],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "API & Technical",
+      "faq_count": 15,
+      "faqs": [
+        {
+          "id": "faq-002",
+          "question": "Could you please confirm whether RetargetIQ can provide this type of data\nor support us in fulfilling this requirement?\n\nWe look forward to your response",
+          "answer": "Do you currently have access to your API key and docs?",
+          "keywords": [
+            "api",
+            "data"
+          ],
+          "source": "email-19c033f0"
+        },
+        {
+          "id": "faq-003",
+          "question": "Alex,\n\nFYI - here’s a query from my dev team lead on how we need to use the API to\nfind B2B and B2C leads?\n\n- Manish\n\nOn Wed, Jan 28, 2026 at 1:16 AM Dhanik Keraliya <dhanikk@itpathsolutions.com>\nwrote:",
+          "answer": "Do you currently have access to your API key and docs?",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19c033f0"
+        },
+        {
+          "id": "faq-018",
+          "question": "Could you please confirm:\n\n  1",
+          "answer": "Please try this endpoint:\n\nhttps://main.dashboard.app.retargetiq.com/api/v2/GetDataByEmail",
+          "keywords": [
+            "api",
+            "data"
+          ],
+          "source": "email-19b2e18c"
+        },
+        {
+          "id": "faq-019",
+          "question": "Can you please provide a publicly accessible API endpoint URL? Or is there an IP whitelist I need to be added to?\n\nThanks",
+          "answer": "https://app.retargetiq.com/api/v2/GetDataByEmail\n\nHere is the correct endpoint sorry for the delay",
+          "keywords": [
+            "api",
+            "data"
+          ],
+          "source": "email-19b2e18c"
+        },
+        {
+          "id": "faq-042",
+          "question": "Mostly:\n\nDo i actually have unlimited CSV exports/email credits\n\nWhat type of enrichments do you have? Think of leadmagic, findymail,\nprospeo as competitors since thats what i use now\n\nI dont mind having to verify leads but can i export big chunks of data at\nonce?\n\nAnd any other relevant info u have about exports limits/enrichment",
+          "answer": "Yes the only cap is on 1 specific list pull it caps at 1,000,000 records \njust so people don’t pull the entire data base. All can be done thru API \nalso (api docs linked on our website).\n\nAny sort of enrichment. For mobile numbers or personal address basically \nany field.",
+          "keywords": [
+            "api",
+            "data",
+            "export",
+            "csv"
+          ],
+          "source": "email-19a0d776"
+        },
+        {
+          "id": "faq-055",
+          "question": "But also — Sami, can we send them the details on the enrichment API\nendpoint for this?\n\nOn Thu, Sep 25, 2025 at 12:50 PM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "Don’t think client has company domains but update the positions that would \nbe great. Thanks Grace.",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-1995dbb5"
+        },
+        {
+          "id": "faq-088",
+          "question": "Where can I find the Website Slug, need it for the API",
+          "answer": "Reach out to me this coming Monday after Christmas and will be more than happy to help you.",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-090",
+          "question": "Can jump on anytime in the morning that works for you",
+          "answer": "I will let you know tomorrow traveling today. In terms of api help what specifics were you needing help with.\n\nSo I can get answers from tech team prior to our call.",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-091",
+          "question": "*\nBusiness and personal emails?\n\n\nRick\n\nFrom: Nate Calhoun <nate@retargetiq.com>\nDate: Saturday, December 27, 2025 at 3:24 PM\nTo: Rick Elmore <rick@simplynoted.com>\nCc: Alex Ciereszko <alex@retargetiq.com>\nSubject: Re: API KEY\n\nI will let you know tomorrow traveling today",
+          "answer": "Just waiting for our tech team to get me the answers unfortunately I don’t know all the intricacies regarding all the in depth API stuff.\n\nFor campaign 3 waiting to hear back how can do thru api and checking to see if it’s possible.",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-092",
+          "question": "*\nBusiness and personal emails?\n           *\nRight now I am only seeing personal (gmail, yahoo, etc.)",
+          "answer": "Just waiting for our tech team to get me the answers unfortunately I don’t know all the intricacies regarding all the in depth API stuff.\n\nFor campaign 3 waiting to hear back how can do thru api and checking to see if it’s possible.",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-094",
+          "question": "Would it be easier to jump on zoom?\n\nR\n\nFrom: Nate Calhoun <nate@retargetiq.com>\nDate: Monday, December 29, 2025 at 12:14 PM\nTo: Rick Elmore <rick@simplynoted.com>\nCc: Alex Ciereszko <alex@retargetiq.com>\nSubject: Re: API KEY\n\nokay and what data are you enriching from",
+          "answer": "Sure. Would you be free for quick call later today can be zoom or phone call.",
+          "keywords": [
+            "api",
+            "data"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-095",
+          "question": "________________________________\nFrom: Nate Calhoun <nate@retargetiq.com>\nSent: Wednesday, December 31, 2025 8:21:31 AM\nTo: Rick Elmore <rick@simplynoted.com>\nCc: Alex Ciereszko <alex@retargetiq.com>\nSubject: Re: API KEY\n\nThis afternoon PST work?",
+          "answer": "My first available would be noon PST would that work?",
+          "keywords": [
+            "api"
+          ],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-103",
+          "question": "How does API work?",
+          "answer": "So we even have an API that's pretty, pretty robust.",
+          "keywords": [
+            "api"
+          ],
+          "source": "call-transcript-aaron-s"
+        },
+        {
+          "id": "faq-105",
+          "question": "How does Integrations work?",
+          "answer": "Not only that, we do have integrations already established with HubSpot, Go High Level, Salesforce, Fresh Sales, Quavio and Mailchimp, Beehive, Pipedrive and many, many more.",
+          "keywords": [
+            "integration"
+          ],
+          "source": "call-transcript-aaron-s"
+        },
+        {
+          "id": "faq-112",
+          "question": "How does Intent Data work?",
+          "answer": "Their intent data that sends to their meta, sends to their Google and sends to their CRM.",
+          "keywords": [
+            "data",
+            "crm",
+            "meta",
+            "google",
+            "intent"
+          ],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "Pricing & Plans",
+      "faq_count": 7,
+      "faqs": [
+        {
+          "id": "faq-035",
+          "question": "Hey Guys\n\nDid you Check out the Google Doc?  Let the guys know if it's something you\nguys could utilize",
+          "answer": "I hope you have been doing well! As per our last conversation I know it has\nbeen about 2-3 weeks and we were planning on setting up a time to speak\nagain around this time as you guys get rolling. Is there a time tomorrow or\nnext week after Thanksgiving that would work for you to reconnect?\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [
+            "google"
+          ],
+          "source": "email-19a2dd59"
+        },
+        {
+          "id": "faq-038",
+          "question": "Can you give me a sense for pricing on:\n\n\n  1",
+          "answer": "Want to clarify on your second bullet point regarding data appends for \nmembers where you have email, name phone. Are you referring to enriching \nthat list for other normal data like address etc. Or are you referring to \nthe financial soft pull for that.",
+          "keywords": [
+            "data",
+            "pricing"
+          ],
+          "source": "email-19a19900"
+        },
+        {
+          "id": "faq-039",
+          "question": "Are you referring to enriching that list for other normal data like address etc",
+          "answer": "Could you give us an idea of the quantity you would be doing this at on a \nmonthly basis. This price varies directly on quantity. With quantity the \nprice comes down per pull.\n\nAlso I want to mention there are two different pulls",
+          "keywords": [
+            "data"
+          ],
+          "source": "email-19a19900"
+        },
+        {
+          "id": "faq-041",
+          "question": "Can you confirm this isn't the case with you?\n\nI need a new database, bad",
+          "answer": "Sure. What info are you looking for? Yes we have agency plans (for someone \nlike you) and enterprise plans for some of our large clients like HomeGoods \nthe retailer.",
+          "keywords": [
+            "data"
+          ],
+          "source": "email-19a0d776"
+        },
+        {
+          "id": "faq-064",
+          "question": "Can you please send me a Calendar invite, please",
+          "answer": "My fault Dan. When were we planning to meet?",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-065",
+          "question": "Nate? Are we still doing the meeting? I never got a link",
+          "answer": "My fault Dan. When were we planning to meet?",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-075",
+          "question": "Any chance we can see what we can spit out nationwide? I would choose b2b_14582, b2b_14583 and b2b_6454",
+          "answer": "These lists have about 1,000,000+ records. Unfortunately I can't pull lists\nfor free but I can see that they have a ton of records. Would you like me\nto get you set up on our month to month plan that can be rolled into\nquarterly?\n\nKnow a business? Refer us for up to $1,000 in recurring commission!",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        }
+      ]
+    },
+    {
+      "name": "Product Capabilities & Features",
+      "faq_count": 43,
+      "faqs": [
+        {
+          "id": "faq-001",
+          "question": "Can you share the definition or how \"score_category\" is generated?\nWhat metric is used to get that score?\n\nThanks",
+          "answer": "That score category is based on intent signals we are seeing for that\nvisitor, and we have a new algorithm that deciphers how much intent there\nactually is.\nFor example, a user that lands on this page would be deemed as high intent\nfor refinancing:\nhttps://www.bankrate.com/mortgages/refinance-rates/\n\nIn our new V2 model this will become be a numerical score 0-100",
+          "keywords": [
+            "intent"
+          ],
+          "source": "email-19c0f839"
+        },
+        {
+          "id": "faq-005",
+          "question": "Hi Cindy,\n\nIs it possible to set up some time to do a screenshare to setup the\nauto-push into Meta?\n\nSeth",
+          "answer": "Did you get the resource with the instructions we sent over?",
+          "keywords": [
+            "meta"
+          ],
+          "source": "email-19bfb04c"
+        },
+        {
+          "id": "faq-010",
+          "question": "How about 10:00 a.m",
+          "answer": "Is there a particular day that would work best for you? I will check on\ntheir schedules if you can let me know a day preference!\n\nHave a great weekend Greg!",
+          "keywords": [],
+          "source": "email-19be846a"
+        },
+        {
+          "id": "faq-011",
+          "question": "What topic would I select if I want to target companies searching for website development services?\n\nSeth",
+          "answer": "Great question — this one’s pretty straightforward once you think about how\nintent works.\n\nThe *intent topic* is simply the signal for what a company is actively\nshowing interest in.",
+          "keywords": [
+            "intent"
+          ],
+          "source": "email-19be6b0d"
+        },
+        {
+          "id": "faq-014",
+          "question": "I see it in the b2c topic list, but i can't select/find when i type\nartificial turf in the topic:\n\nhttps://d.pr/i/5ddRhG\n\nIs there a way to type up a manual query maybe?\n\nCary",
+          "answer": "\"Hydro-turf\" at the moment is the only topic keyword that can be utilized\nin the \"Turf\" topic.",
+          "keywords": [],
+          "source": "email-19bca034"
+        },
+        {
+          "id": "faq-021",
+          "question": "How are things\ngoing?\n\nI also wanted to touch base to make sure that the meeting scheduled for\ntoday still works well for you",
+          "answer": "We are working on setting up some sales processes internally so we will be\nholding off on this until we can get that straightened out. I will reply\nback to this thread for us to get rolling again!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-19ac26cd"
+        },
+        {
+          "id": "faq-022",
+          "question": "Join Zoom Meeting\nhttps://fitsolutions.zoom.us/j/86298150223?pwd=VlI8vgukQ68uVvNmiy0z47BFk3mJxb.1&from=addon\n\nMeeting ID: 862 9815 0223\nPasscode: 767672",
+          "answer": "Travis you want to give me a ring or shoot me your number.",
+          "keywords": [],
+          "source": "email-19aa8586"
+        },
+        {
+          "id": "faq-025",
+          "question": "Hey Alex,\n\nWant to let me know some times that might work for you? Do you have a\ncalendly?\n\nBest,\nErin\n\nOn Tue, Nov 18, 2025 at 4:56 PM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "It’s great to be in touch with you! Nate had mentioned great things about\nyou. When is a good time to talk for you on Thursday or Friday?\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-19a992a8"
+        },
+        {
+          "id": "faq-026",
+          "question": "Hey Alex,\n\nApologies for the delay - what's your availability tomorrow?\n\nBest,\nErin",
+          "answer": "Great to hear from you and I hope you’ve been great. For tomorrow how does\n10 or 11 am EST work? I also have 1 pm and 4pm EST available. Please let me\nknow if any of these don’t work and I may be able to shift some things\naround to make something else work.\n\nLooking forward to it!",
+          "keywords": [],
+          "source": "email-19a992a8"
+        },
+        {
+          "id": "faq-027",
+          "question": "Will you send me an invite?",
+          "answer": "Absolutely, I just sent over that invite. Talk soon!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-19a992a8"
+        },
+        {
+          "id": "faq-028",
+          "question": "Hey guys,\n\nIs the AI platform ready yet?",
+          "answer": "We are in the final days of releasing the final version of AI search, it is\navailable right now in Beta so we are just wrapping up some testing and\ncorrections on it!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-19a992a8"
+        },
+        {
+          "id": "faq-029",
+          "question": "Hey guys,\n\nHow are things coming along? Is the AI search ready?\n\nBest,\nErin",
+          "answer": "Apologies I missed this after the new year! Our AI Search is currently\nreleased in Beta mode (not working flawlessly) but our manual search is\nworking completely fine as before!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-19a992a8"
+        },
+        {
+          "id": "faq-030",
+          "question": "Do you need anything besides their email addresses in the\nresults?\n\nOn Sat, Nov 15, 2025 at 10:59 PM Retarget IQ Team <info@retargetiq.com>\nwrote:",
+          "answer": "No. That’s exactly it just name and email",
+          "keywords": [],
+          "source": "email-19a88aba"
+        },
+        {
+          "id": "faq-032",
+          "question": "What time slots do you have for tomorrow?",
+          "answer": "Only time we have available tomorrow is going to be 3PM PST. Would that\nwork for you?\n\nIf not, we can chat this weekend or early next week.",
+          "keywords": [],
+          "source": "email-19a7e0d0"
+        },
+        {
+          "id": "faq-033",
+          "question": "Do you have any other details or is it just the intent?",
+          "answer": "No just intent, thank you!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [
+            "intent"
+          ],
+          "source": "email-19a70a7b"
+        },
+        {
+          "id": "faq-036",
+          "question": "Do you have a deck or anything you can send over?",
+          "answer": "For sure. I attached it below. We had a great meeting yesterday with the \nSVP of Buisness Development at Motley Fool. They are super interested. \nRandomly popped into my head to reach out to you because I know you guys \nare some of the biggest players in the space.\n\n(Note the deck I attached is purely for the financial arm of Retarget IQ \nnot our main identify graph)",
+          "keywords": [],
+          "source": "email-19a2e0ee"
+        },
+        {
+          "id": "faq-043",
+          "question": "Do u have the video demo? I cant play it\n\nFrom the website",
+          "answer": "Alex do you have those few video demos we have?",
+          "keywords": [],
+          "source": "email-19a0d776"
+        },
+        {
+          "id": "faq-045",
+          "question": "Hi Nate,\n\nIs job title required?\n\nYou could use the following codes and remove job titles",
+          "answer": "No but these two subject categories you provided\n\nNAICS 523930 (Investment Advice)",
+          "keywords": [],
+          "source": "email-199f2e81"
+        },
+        {
+          "id": "faq-048",
+          "question": "What does availability look like for you and Jared to discuss? Looking forward to catching up",
+          "answer": "Wednesday would work great! Would we all be good for a 12pm EST call on\nWednesday?\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-1995de63"
+        },
+        {
+          "id": "faq-049",
+          "question": "Would we all be good for a 12pm EST call on Wednesday?\n\n\n\n\nSincerely,\n\nAlex Ciereszko\n610-554-8649\n\n[https://ci3.googleusercontent.com/mail-sig/AIorK4zR6Zk8uCDfmUBhnjDQZPGfZoNASTpKd2OCbkRmoJFjQ-FjdAXTHE5gkWLe614KrobA02XZ49w9ojYs]",
+          "answer": "Great, whenever you guys can let me know I’ll go ahead and send out invites\nto everyone! Looking forward to it.\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [
+            "google"
+          ],
+          "source": "email-1995de63"
+        },
+        {
+          "id": "faq-051",
+          "question": "Morning Alex and Nate,\n\nDoes 9am on Thurs work for all? That may be best for us considering we have\nteam members in international time zones",
+          "answer": "9 am EST sounds great for Thursday, I just sent over a meeting invitation\nfor us all. I look forward to speaking with everyone soon!\n\nAlex Ciereszko\n610-554-8649",
+          "keywords": [],
+          "source": "email-198997dc"
+        },
+        {
+          "id": "faq-056",
+          "question": "Hi Nate,\n\nCan you provide company domain?\n\nUpdating suggested job titles increases to\n22,712 records",
+          "answer": "Don’t think client has company domains but update the positions that would \nbe great. Thanks Grace.",
+          "keywords": [],
+          "source": "email-1995dbb5"
+        },
+        {
+          "id": "faq-060",
+          "question": "Can we link up tomorrow afternoon on this?",
+          "answer": "Are you good for a call at 12pm EST tomorrow? We are also available anytime\nafter 6pm EST.",
+          "keywords": [],
+          "source": "email-197ec7fc"
+        },
+        {
+          "id": "faq-063",
+          "question": "Alex, when are you free?",
+          "answer": "Would you be free tomorrow at 9:45 am EST?\n\nKnow a business? Refer us for up to $1,000 in recurring commission!",
+          "keywords": [],
+          "source": "email-19c0bb7b"
+        },
+        {
+          "id": "faq-066",
+          "question": "When is another time that works?",
+          "answer": "Would tomorrow at 3pm pst work?",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-067",
+          "question": "Can we do 10:30am Arizona time tomorrow? Or 12 or 1pm",
+          "answer": "I have a 7pm PST tomorrow. Calendar slammed from 7am to 7pm pst tmr.",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-068",
+          "question": "Are you gonna be alive? Haha",
+          "answer": "Always haha. I’ll send over an invite.",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-069",
+          "question": "Maybe 7:30pm Arizona time?",
+          "answer": "I can do the 7pm pst.  Wouldn’t be able to do later than that.",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-070",
+          "question": "Can we try 12pm?",
+          "answer": "What about this afternoon would that work?",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-071",
+          "question": "What time? I’m working on the computer most of the day so I can squeeze you in",
+          "answer": "2pm pst would be great. I’ll move my 2pm to a rep so I can get on with you.\n\nLet me know if that works.",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-072",
+          "question": "How many are in the last 2 weeks? And 1 week?\n\nAnd confirming what Jon and I spoke about",
+          "answer": "Dan,\nI am looping in Alex, one of our other co-founders, to help address your\nquestion!\n\nBest,\nJonathan Kluger\nChief Revenue Officer\n+1 (301) 300-0418",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-073",
+          "question": "Would love to know the codes for that",
+          "answer": "No problem, I will go through and see which ones would best match this\ncriteria and let you know how many records we have for that.\n\nIn the meantime that list of intent signals I attached is a good reference\nfor any other topics you might be interested in!",
+          "keywords": [
+            "intent"
+          ],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-074",
+          "question": "Do you know when the search term will be implemented?",
+          "answer": "Just looking from a macro on our B2B these are some of the ai topics that\nare coming up -\n\nb2b_6453 Artificial Intelligence\nb2b_14582 Artificial Intelligence Consulting Providers\nb2b_6454 Artificial Intelligence for IT Operations (AIOps)\nb2b_46680 Artificial Intelligence In Banking\nb2b_14586 Artificial Intelligence in Sales\nb2b_14583 Artificial Intelligence Software\nb2b_14584 Artificial Intelligence Supply Chain\nWhen it comes to the actual terms we are looking at about 15 days until we\nlaunch those and they will be included in our V2 platform!",
+          "keywords": [],
+          "source": "email-19bba1b3"
+        },
+        {
+          "id": "faq-080",
+          "question": "So it looks like there's no distinction between their personal and work\nemail?\n\nNo LinkedIn URL?\n\nSometimes we target business only emails instead of personal or vice versa",
+          "answer": "Please check if your website identification is set to B2C or B2B.",
+          "keywords": [],
+          "source": "email-19bc2ce7"
+        },
+        {
+          "id": "faq-084",
+          "question": "Here is our availability, do you have anything on your end that aligns?\n \nMon - anything before 2p MST?\nTue - 3p (MST) or later",
+          "answer": "Great to meet you Connor.\n\nI’m available anytime after 2:30pm PST or later Monday.",
+          "keywords": [],
+          "source": "email-19ba3837"
+        },
+        {
+          "id": "faq-085",
+          "question": "What time would work best for you \nTroy on Thursday or Friday if Thursday isn’t the best for you",
+          "answer": "Would 3pm pst on Thursday work with you Troy and Alex?",
+          "keywords": [],
+          "source": "email-19b802a3"
+        },
+        {
+          "id": "faq-089",
+          "question": "Can I pay for 2-3 hours of paid support to help get three workflows set up correctly? I mainly want to make sure the RetargetIQ pieces are wired properly, I can do everything else",
+          "answer": "Reach out to me this coming Monday after Christmas and will be more than happy to help you.",
+          "keywords": [],
+          "source": "email-19b2dcd7"
+        },
+        {
+          "id": "faq-096",
+          "question": "Did we agree upon today? If yes I’m really sorry I didn’t get any notification neither did I write it down into my calendar",
+          "answer": "Yes no worries tho. What day can we move call to next week so I can put it \non my calendar before it fills up.\n\nOn Dec 3, 2025, at 10:34 AM, Patryk Donocik \n<patriciano.business@hotmail.com> wrote:",
+          "keywords": [],
+          "source": "email-19ae5307"
+        },
+        {
+          "id": "faq-097",
+          "question": "When did u get into my calendar again?\n\nNate Calhoun <nate@retargetiq.com> schrieb am Di",
+          "answer": "Not exactly sure. My guess is you probably saw one of our ads and booked a\ncall through our website.\n\nHere is a synopsis of what we do just in case it rings a bell.",
+          "keywords": [],
+          "source": "email-19ae009a"
+        },
+        {
+          "id": "faq-098",
+          "question": "Sure can you reschedule me for the 10th of december?\n\n\n\n\nNate Calhoun <nate@retargetiq.com> schrieb am Di",
+          "answer": "Sure. Would noon PST or 1pm PST work December 10th?\n\nOn Dec 2, 2025, at 6:04 PM, Filip Scheufler \n<scheuflergroupunited@gmail.com> wrote:",
+          "keywords": [],
+          "source": "email-19ae009a"
+        },
+        {
+          "id": "faq-099",
+          "question": "How about noon?\n\nNate Calhoun <nate@retargetiq.com> schrieb am Mi",
+          "answer": "I can do 1pm EST. Tommorrow if that would work. My 9am est is booked.\n\nOn Dec 3, 2025, at 4:35 PM, Filip Scheufler \n<scheuflergroupunited@gmail.com> wrote:",
+          "keywords": [],
+          "source": "email-19ae009a"
+        },
+        {
+          "id": "faq-100",
+          "question": "What's your current CAC look like?",
+          "answer": "I have to double check, but we're literally paying about, I think, eight bucks a conversion.",
+          "keywords": [],
+          "source": "call-transcript-aaron-s"
+        },
+        {
+          "id": "faq-102",
+          "question": "I mean, in terms of just like straight up, right?",
+          "answer": "There are two co. We have three founders.",
+          "keywords": [],
+          "source": "call-transcript-aaron-s"
+        }
+      ]
+    },
+    {
+      "name": "Competitor Comparisons",
+      "faq_count": 1,
+      "faqs": [
+        {
+          "id": "faq-023",
+          "question": "Hey Nate,\n\nDo you use MillionVerifier to verify your leads?\n\nI am having a lot of issues with them right now for some reason",
+          "answer": "Omni verifier is good also there are a bunch just ask chat gpt for millionverifier alternatives.\n\nEmail last seen not exactly sure to be honest. I will ask team.",
+          "keywords": [],
+          "source": "email-19aa7fcb"
+        }
+      ]
+    },
+    {
+      "name": "Account & Login Issues",
+      "faq_count": 1,
+      "faqs": [
+        {
+          "id": "faq-062",
+          "question": "Has there been a change in access\npermissions or settings on your end?\n\nLet me know—thanks",
+          "answer": "No the access hasn’t changed just double checked you have full admin access \nto all of the domains in that godaddy account.",
+          "keywords": [
+            "account"
+          ],
+          "source": "email-197c8bf5"
+        }
+      ]
+    },
+    {
+      "name": "Billing & Cancellations",
+      "faq_count": 1,
+      "faqs": [
+        {
+          "id": "faq-077",
+          "question": "CN you do a walk \nthrough on Monday and am I still in time for the offer?\n\nJust seeing your reply now- my kid had an emergency at Pre-k\n\nPlease advise\n\nShannon\n\n\n\n\nSent from Shannon's iPhone",
+          "answer": "Offer ends today at Midnight. But next week we still running $497/m but \nrequires quarterly billing or it’s $749/m for month to month.\n\nWish I could extend it to you till Monday but the owners said we have to be \nfair to all prospects that were told today is the cut off. So just let me \nknow what you want to do. Either way works.",
+          "keywords": [
+            "billing"
+          ],
+          "source": "email-19bc7f67"
+        }
+      ]
+    }
+  ]
+}
