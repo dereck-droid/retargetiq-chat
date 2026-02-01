@@ -83,33 +83,48 @@ export async function POST(req: Request) {
       );
     }
 
-    const n8nData = await n8nResponse.json();
+    // Try to parse JSON, with fallback for text responses
+    let n8nData;
+    const responseText = await n8nResponse.text();
+
+    try {
+      n8nData = JSON.parse(responseText);
+    } catch {
+      // If not JSON, use the raw text
+      n8nData = { response: responseText };
+    }
+
+    console.log("n8n response:", JSON.stringify(n8nData));
 
     // n8n should return: { response: "..." } or { output: "..." } or { message: "..." }
-    const assistantMessage =
+    let assistantMessage =
       n8nData.response ||
       n8nData.output ||
       n8nData.message ||
       n8nData.text ||
-      (typeof n8nData === "string" ? n8nData : JSON.stringify(n8nData));
+      n8nData.content ||
+      "";
 
-    // Convert to UI Message Stream format for assistant-ui
+    // If still empty, stringify the entire response for debugging
+    if (!assistantMessage && n8nData) {
+      assistantMessage = typeof n8nData === "string" ? n8nData : `Received: ${JSON.stringify(n8nData)}`;
+    }
+
+    if (!assistantMessage) {
+      assistantMessage = "Sorry, I didn't receive a response. Please try again.";
+    }
+
+    // Convert to AI SDK data stream format for assistant-ui
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       start(controller) {
-        // Send the message as a complete text delta
-        const data = {
-          type: "text-delta",
-          textDelta: assistantMessage,
-        };
-        controller.enqueue(encoder.encode(`0:${JSON.stringify(data)}\n`));
+        // Send text content (0: prefix for text chunks)
+        controller.enqueue(encoder.encode(`0:${JSON.stringify(assistantMessage)}\n`));
 
-        // Send finish message
-        const finish = {
-          type: "finish",
-          finishReason: "stop",
-        };
-        controller.enqueue(encoder.encode(`0:${JSON.stringify(finish)}\n`));
+        // Send finish message (d: prefix for data/finish)
+        controller.enqueue(
+          encoder.encode(`d:${JSON.stringify({ finishReason: "stop" })}\n`)
+        );
 
         controller.close();
       },

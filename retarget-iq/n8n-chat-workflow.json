@@ -68,7 +68,7 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ JSON.stringify({ response: $json.output || $json.text || 'Sorry, I could not generate a response. Please try again.' }) }}",
+        "responseBody": "={{ (() => { const agentOutput = $('RetargetIQ Support Agent').first().json; const text = agentOutput.output || agentOutput.text || agentOutput.response || agentOutput.content || ''; return JSON.stringify({ response: text || 'No response generated' }); })() }}",
         "options": {
           "responseHeaders": {
             "entries": [
