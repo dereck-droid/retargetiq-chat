@@ -34,10 +34,10 @@ const TypingIndicator: FC = () => {
   return (
     <div className="aui-typing-indicator fade-in slide-in-from-bottom-2 mx-auto w-full max-w-(--thread-max-width) animate-in py-4 duration-300">
       <div className="rounded-2xl bg-[#3A3A3E] px-5 py-4 shadow-md w-fit">
-        <div className="flex items-center gap-1.5">
-          <div className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0ms", animationDuration: "1s" }}></div>
-          <div className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "150ms", animationDuration: "1s" }}></div>
-          <div className="h-2 w-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "300ms", animationDuration: "1s" }}></div>
+        <div className="flex items-center gap-1">
+          <div className="h-2 w-2 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "0ms", animationDuration: "1.4s" }}></div>
+          <div className="h-2 w-2 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "200ms", animationDuration: "1.4s" }}></div>
+          <div className="h-2 w-2 rounded-full bg-gray-400 animate-pulse" style={{ animationDelay: "400ms", animationDuration: "1.4s" }}></div>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@ export const Thread: FC = () => {
       }}
     >
       <ThreadPrimitive.Viewport
-        turnAnchor="top"
+        turnAnchor="bottom"
         className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-8"
       >
         <AssistantIf condition={({ thread }) => thread.isEmpty}>
@@ -72,7 +72,7 @@ export const Thread: FC = () => {
           <TypingIndicator />
         </AssistantIf>
 
-        <ThreadPrimitive.ViewportFooter className="aui-thread-viewport-footer sticky bottom-0 mx-auto mt-auto flex w-full max-w-(--thread-max-width) flex-col gap-4 overflow-visible pb-4 md:pb-6">
+        <ThreadPrimitive.ViewportFooter className="aui-thread-viewport-footer sticky bottom-0 mx-auto mt-4 flex w-full max-w-(--thread-max-width) flex-col gap-4 overflow-visible pb-4 md:pb-6">
           <ThreadScrollToBottom />
           <Composer />
         </ThreadPrimitive.ViewportFooter>
@@ -157,7 +157,7 @@ const ThreadSuggestions: FC = () => {
 const Composer: FC = () => {
   return (
     <ComposerPrimitive.Root className="aui-composer-root relative flex w-full flex-col">
-      <div className="flex w-full flex-col rounded-2xl border-2 border-white/20 bg-white px-1 pt-2 shadow-lg outline-none transition-all has-[textarea:focus-visible]:border-[#47C2EB] has-[textarea:focus-visible]:shadow-xl has-[textarea:focus-visible]:shadow-[#47C2EB]/20">
+      <div className="flex w-full flex-col rounded-2xl bg-white px-1 pt-2 shadow-md outline-none transition-shadow has-[textarea:focus-visible]:shadow-lg">
         <ComposerPrimitive.Input
           placeholder="Send a message..."
           className="aui-composer-input mb-1 max-h-32 min-h-14 w-full resize-none bg-transparent px-4 pt-2 pb-3 text-sm text-gray-900 outline-none placeholder:text-gray-500 focus-visible:ring-0"
