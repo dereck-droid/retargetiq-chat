@@ -69,7 +69,7 @@ body {
 .message-list {
   @apply flex-1 overflow-y-auto;
   @apply p-4 space-y-3;
-  @apply bg-chat-bg-chat;
+  @apply bg-brand-bg-chat;
 }
 
 /* ========================================
