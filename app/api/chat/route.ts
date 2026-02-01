@@ -56,17 +56,6 @@ export async function POST(req: Request) {
     return "";
   };
 
-  // Helper to write text as proper UI message chunks
-  const writeTextChunks = (
-    writer: { write: (chunk: unknown) => void },
-    text: string
-  ) => {
-    const id = generateId();
-    writer.write({ type: "text-start", id });
-    writer.write({ type: "text-delta", id, delta: text });
-    writer.write({ type: "text-end", id });
-  };
-
   // Format messages for n8n
   const formattedMessages = messages.map((m: unknown) => {
     const msg = m as Record<string, unknown>;
@@ -97,10 +86,14 @@ export async function POST(req: Request) {
         if (!n8nResponse.ok) {
           const errorText = await n8nResponse.text();
           console.error("n8n webhook error:", errorText);
-          writeTextChunks(
-            writer,
-            "Sorry, there was an error connecting to the server."
-          );
+          const errorId = generateId();
+          writer.write({ type: "text-start", id: errorId });
+          writer.write({
+            type: "text-delta",
+            id: errorId,
+            delta: "Sorry, there was an error connecting to the server.",
+          });
+          writer.write({ type: "text-end", id: errorId });
           return;
         }
 
@@ -138,13 +131,20 @@ export async function POST(req: Request) {
         }
 
         // Write the response as proper UI message chunks
-        writeTextChunks(writer, assistantMessage);
+        const messageId = generateId();
+        writer.write({ type: "text-start", id: messageId });
+        writer.write({ type: "text-delta", id: messageId, delta: assistantMessage });
+        writer.write({ type: "text-end", id: messageId });
       } catch (error) {
         console.error("Error calling n8n webhook:", error);
-        writeTextChunks(
-          writer,
-          "Sorry, there was an error processing your request."
-        );
+        const catchErrorId = generateId();
+        writer.write({ type: "text-start", id: catchErrorId });
+        writer.write({
+          type: "text-delta",
+          id: catchErrorId,
+          delta: "Sorry, there was an error processing your request.",
+        });
+        writer.write({ type: "text-end", id: catchErrorId });
       }
     },
   });
