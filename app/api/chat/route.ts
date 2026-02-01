@@ -1,7 +1,6 @@
-import { type UIMessage } from "ai";
-
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  const body = await req.json();
+  const messages = body.messages || [];
 
   const webhookUrl = process.env.N8N_WEBHOOK_URL;
 
@@ -12,7 +11,57 @@ export async function POST(req: Request) {
     );
   }
 
+  // Helper to extract text content from a message
+  const getMessageContent = (msg: unknown): string => {
+    if (!msg || typeof msg !== "object") return "";
+    const m = msg as Record<string, unknown>;
+
+    // Handle string content directly
+    if (typeof m.content === "string") return m.content;
+
+    // Handle parts array (AI SDK v6 format)
+    if (Array.isArray(m.parts)) {
+      return m.parts
+        .map((part: unknown) => {
+          if (typeof part === "string") return part;
+          if (part && typeof part === "object") {
+            const p = part as Record<string, unknown>;
+            if (p.type === "text" && typeof p.text === "string") return p.text;
+          }
+          return "";
+        })
+        .join("");
+    }
+
+    // Handle content array
+    if (Array.isArray(m.content)) {
+      return m.content
+        .map((part: unknown) => {
+          if (typeof part === "string") return part;
+          if (part && typeof part === "object") {
+            const p = part as Record<string, unknown>;
+            if (p.type === "text" && typeof p.text === "string") return p.text;
+          }
+          return "";
+        })
+        .join("");
+    }
+
+    return "";
+  };
+
   try {
+    // Format messages for n8n
+    const formattedMessages = messages.map((m: unknown) => {
+      const msg = m as Record<string, unknown>;
+      return {
+        role: msg.role || "user",
+        content: getMessageContent(m),
+      };
+    });
+
+    const latestMessage = formattedMessages[formattedMessages.length - 1];
+
     // Send messages to n8n webhook
     const n8nResponse = await fetch(webhookUrl, {
       method: "POST",
@@ -20,16 +69,8 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        messages: messages.map((m) => ({
-          role: m.role,
-          content: typeof m.content === "string"
-            ? m.content
-            : m.content.map(part =>
-                part.type === "text" ? part.text : ""
-              ).join(""),
-        })),
-        // Include the latest user message for convenience
-        latestMessage: messages[messages.length - 1]?.content,
+        messages: formattedMessages,
+        latestMessage: latestMessage?.content || "",
       }),
     });
 
@@ -53,7 +94,6 @@ export async function POST(req: Request) {
       (typeof n8nData === "string" ? n8nData : JSON.stringify(n8nData));
 
     // Convert to UI Message Stream format for assistant-ui
-    // This simulates a streaming response from the complete n8n response
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
       start(controller) {
