@@ -1,3 +1,5 @@
+import { createUIMessageStreamResponse } from "ai";
+
 export async function POST(req: Request) {
   const body = await req.json();
   const messages = body.messages || [];
@@ -50,97 +52,77 @@ export async function POST(req: Request) {
     return "";
   };
 
-  try {
-    // Format messages for n8n
-    const formattedMessages = messages.map((m: unknown) => {
-      const msg = m as Record<string, unknown>;
-      return {
-        role: msg.role || "user",
-        content: getMessageContent(m),
-      };
-    });
+  // Format messages for n8n
+  const formattedMessages = messages.map((m: unknown) => {
+    const msg = m as Record<string, unknown>;
+    return {
+      role: msg.role || "user",
+      content: getMessageContent(m),
+    };
+  });
 
-    const latestMessage = formattedMessages[formattedMessages.length - 1];
+  const latestMessage = formattedMessages[formattedMessages.length - 1];
 
-    // Send messages to n8n webhook
-    const n8nResponse = await fetch(webhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messages: formattedMessages,
-        latestMessage: latestMessage?.content || "",
-      }),
-    });
+  return createUIMessageStreamResponse({
+    execute: async (writer) => {
+      try {
+        // Send messages to n8n webhook
+        const n8nResponse = await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            messages: formattedMessages,
+            latestMessage: latestMessage?.content || "",
+          }),
+        });
 
-    if (!n8nResponse.ok) {
-      const errorText = await n8nResponse.text();
-      console.error("n8n webhook error:", errorText);
-      return new Response(
-        JSON.stringify({ error: "Failed to get response from n8n" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
+        if (!n8nResponse.ok) {
+          const errorText = await n8nResponse.text();
+          console.error("n8n webhook error:", errorText);
+          writer.writeText("Sorry, there was an error connecting to the server.");
+          return;
+        }
 
-    // Try to parse JSON, with fallback for text responses
-    let n8nData;
-    const responseText = await n8nResponse.text();
+        // Try to parse JSON, with fallback for text responses
+        let n8nData;
+        const responseText = await n8nResponse.text();
 
-    try {
-      n8nData = JSON.parse(responseText);
-    } catch {
-      // If not JSON, use the raw text
-      n8nData = { response: responseText };
-    }
+        try {
+          n8nData = JSON.parse(responseText);
+        } catch {
+          n8nData = { response: responseText };
+        }
 
-    console.log("n8n response:", JSON.stringify(n8nData));
+        console.log("n8n response:", JSON.stringify(n8nData));
 
-    // n8n should return: { response: "..." } or { output: "..." } or { message: "..." }
-    let assistantMessage =
-      n8nData.response ||
-      n8nData.output ||
-      n8nData.message ||
-      n8nData.text ||
-      n8nData.content ||
-      "";
+        // Extract message from various possible fields
+        let assistantMessage =
+          n8nData.response ||
+          n8nData.output ||
+          n8nData.message ||
+          n8nData.text ||
+          n8nData.content ||
+          "";
 
-    // If still empty, stringify the entire response for debugging
-    if (!assistantMessage && n8nData) {
-      assistantMessage = typeof n8nData === "string" ? n8nData : `Received: ${JSON.stringify(n8nData)}`;
-    }
+        if (!assistantMessage && n8nData) {
+          assistantMessage =
+            typeof n8nData === "string"
+              ? n8nData
+              : `Received: ${JSON.stringify(n8nData)}`;
+        }
 
-    if (!assistantMessage) {
-      assistantMessage = "Sorry, I didn't receive a response. Please try again.";
-    }
+        if (!assistantMessage) {
+          assistantMessage = "Sorry, I didn't receive a response. Please try again.";
+        }
 
-    // Convert to AI SDK data stream format for assistant-ui
-    const encoder = new TextEncoder();
-    const stream = new ReadableStream({
-      start(controller) {
-        // Send text content (0: prefix for text chunks)
-        controller.enqueue(encoder.encode(`0:${JSON.stringify(assistantMessage)}\n`));
-
-        // Send finish message (d: prefix for data/finish)
-        controller.enqueue(
-          encoder.encode(`d:${JSON.stringify({ finishReason: "stop" })}\n`)
-        );
-
-        controller.close();
-      },
-    });
-
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "X-Vercel-AI-Data-Stream": "v1",
-      },
-    });
-  } catch (error) {
-    console.error("Error calling n8n webhook:", error);
-    return new Response(
-      JSON.stringify({ error: "Failed to connect to n8n" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  }
+        // Write the response text
+        writer.writeText(assistantMessage);
+      } catch (error) {
+        console.error("Error calling n8n webhook:", error);
+        writer.writeText("Sorry, there was an error processing your request.");
+      }
+    },
+  });
 }
