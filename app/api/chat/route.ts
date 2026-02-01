@@ -1,4 +1,4 @@
-import { createUIMessageStreamResponse } from "ai";
+import { createUIMessageStream, createUIMessageStreamResponse } from "ai";
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -63,8 +63,9 @@ export async function POST(req: Request) {
 
   const latestMessage = formattedMessages[formattedMessages.length - 1];
 
-  return createUIMessageStreamResponse({
-    execute: async (writer) => {
+  // Create the UI message stream
+  const stream = createUIMessageStream({
+    execute: async ({ writer }) => {
       try {
         // Send messages to n8n webhook
         const n8nResponse = await fetch(webhookUrl, {
@@ -125,4 +126,7 @@ export async function POST(req: Request) {
       }
     },
   });
+
+  // Return the stream as a response
+  return createUIMessageStreamResponse({ stream });
 }
