@@ -68,7 +68,7 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ JSON.stringify({ response: $json.output || $json.text || 'Sorry, I could not generate a response. Please try again.' }) }}",
+        "responseBody": "={{ JSON.stringify({ response: $json.output || 'No output field found' }) }}",
         "options": {
           "responseHeaders": {
             "entries": [

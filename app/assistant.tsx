@@ -18,11 +18,11 @@ export const Assistant = () => {
     <AssistantRuntimeProvider runtime={runtime}>
       <div className="flex h-dvh w-full flex-col bg-background">
         {/* Header */}
-        <header className="flex h-16 shrink-0 items-center justify-center border-b bg-white px-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#47C2EB]">
+        <header className="flex shrink-0 items-center justify-center border-b bg-gradient-to-r from-[#47C2EB] to-[#3BA8D1] px-6 py-5 shadow-md">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm shadow-lg">
               <svg
-                className="h-6 w-6 text-white"
+                className="h-8 w-8 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -36,10 +36,10 @@ export const Assistant = () => {
               </svg>
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-[#111828]">
+              <h1 className="text-xl font-bold text-white tracking-tight">
                 RetargetIQ Support
               </h1>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-white/80 font-medium">
                 How can we help you today?
               </p>
             </div>
