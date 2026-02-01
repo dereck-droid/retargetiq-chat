@@ -18,11 +18,11 @@ export const Assistant = () => {
     <AssistantRuntimeProvider runtime={runtime}>
       <div className="flex h-dvh w-full flex-col bg-background">
         {/* Header */}
-        <header className="flex shrink-0 items-center justify-center border-b bg-gradient-to-r from-[#47C2EB] to-[#3BA8D1] px-6 py-5 shadow-md">
-          <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm shadow-lg">
+        <header className="flex shrink-0 items-center justify-between border-b border-white/10 bg-[#1E1E22] px-6 py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] shadow-md">
               <svg
-                className="h-8 w-8 text-white"
+                className="h-5 w-5 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -36,18 +36,15 @@ export const Assistant = () => {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-tight">
+              <h1 className="text-base font-semibold text-white tracking-tight">
                 RetargetIQ Support
               </h1>
-              <p className="text-sm text-white/80 font-medium">
-                How can we help you today?
-              </p>
             </div>
           </div>
         </header>
 
         {/* Chat Area */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden bg-[#2A2A2E]">
           <Thread />
         </div>
       </div>

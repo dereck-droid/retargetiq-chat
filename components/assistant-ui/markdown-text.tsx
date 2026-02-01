@@ -35,11 +35,11 @@ const CodeHeader: FC<CodeHeaderProps> = ({ language, code }) => {
   };
 
   return (
-    <div className="aui-code-header-root mt-4 flex items-center justify-between gap-4 rounded-t-lg bg-muted-foreground/15 px-4 py-2 font-semibold text-foreground text-sm dark:bg-muted-foreground/20">
+    <div className="aui-code-header-root mt-4 flex items-center justify-between gap-4 rounded-t-lg bg-[#1E1E22] border border-white/10 px-4 py-2 font-semibold text-gray-300 text-sm">
       <span className="aui-code-header-language lowercase [&>span]:text-xs">
         {language}
       </span>
-      <TooltipIconButton tooltip="Copy" onClick={onCopy}>
+      <TooltipIconButton tooltip="Copy" onClick={onCopy} className="text-gray-300 hover:text-white">
         {!isCopied && <CopyIcon />}
         {isCopied && <CheckIcon />}
       </TooltipIconButton>
@@ -133,7 +133,7 @@ const defaultComponents = memoizeMarkdownComponents({
   a: ({ className, ...props }) => (
     <a
       className={cn(
-        "aui-md-a font-medium text-primary underline underline-offset-4",
+        "aui-md-a font-medium text-[#47C2EB] hover:text-[#3BA8D1] underline underline-offset-4",
         className,
       )}
       {...props}
@@ -217,7 +217,7 @@ const defaultComponents = memoizeMarkdownComponents({
       <code
         className={cn(
           !isCodeBlock &&
-            "aui-md-inline-code rounded border bg-muted font-semibold",
+            "aui-md-inline-code rounded border border-white/10 bg-[#2A2A2E] px-1.5 py-0.5 font-semibold text-gray-200",
           className,
         )}
         {...props}
