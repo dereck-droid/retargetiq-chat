@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   RETARGETIQ SUPPORT CHAT - GLOBAL STYLES
+   ======================================== */
+
+:root {
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing */
+  --chat-padding: 16px;
+  --message-gap: 12px;
+  --bubble-padding-x: 14px;
+  --bubble-padding-y: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   CHAT CONTAINER
+   ======================================== */
+
+.chat-container {
+  @apply flex flex-col h-screen bg-white;
+  @apply rounded-container shadow-chat overflow-hidden;
+}
+
+/* Iframe/widget mode */
+.chat-container--widget {
+  @apply h-[600px] w-[380px];
+  @apply fixed bottom-5 right-5;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.chat-header {
+  @apply flex items-center justify-between;
+  @apply px-4 py-3;
+  @apply bg-brand-primary text-white;
+  @apply border-b border-brand-primary-dark;
+}
+
+.chat-header__title {
+  @apply text-base font-semibold;
+}
+
+.chat-header__subtitle {
+  @apply text-xs opacity-80;
+}
+
+/* ========================================
+   MESSAGE LIST
+   ======================================== */
+
+.message-list {
+  @apply flex-1 overflow-y-auto;
+  @apply p-4 space-y-3;
+  @apply bg-chat-bg-chat;
+}
+
+/* ========================================
+   MESSAGE BUBBLES
+   ======================================== */
+
+.message {
+  @apply flex animate-fade-in;
+}
+
+.message--user {
+  @apply justify-end;
+}
+
+.message--ai {
+  @apply justify-start;
+}
+
+.message__bubble {
+  @apply max-w-[80%] px-4 py-2.5;
+  @apply rounded-bubble shadow-bubble;
+  @apply text-sm leading-relaxed;
+}
+
+.message__bubble--user {
+  @apply bg-chat-user-bubble text-chat-user-text;
+  @apply rounded-br-sm;
+}
+
+.message__bubble--ai {
+  @apply bg-chat-ai-bubble text-chat-ai-text;
+  @apply rounded-bl-sm border border-chat-border;
+}
+
+/* ========================================
+   TYPING INDICATOR
+   ======================================== */
+
+.typing-indicator {
+  @apply flex items-center gap-1 px-4 py-3;
+}
+
+.typing-indicator__dot {
+  @apply w-2 h-2 rounded-full bg-gray-400;
+  animation: pulseDot 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator__dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator__dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-indicator__dot:nth-child(3) { animation-delay: 0s; }
+
+/* ========================================
+   INPUT AREA
+   ======================================== */
+
+.chat-input {
+  @apply flex items-center gap-3;
+  @apply p-4 border-t border-chat-border;
+  @apply bg-white;
+}
+
+.chat-input__field {
+  @apply flex-1 px-4 py-2.5;
+  @apply bg-chat-input-bg border border-chat-border;
+  @apply rounded-input;
+  @apply text-sm text-chat-ai-text;
+  @apply placeholder-gray-400;
+  @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent;
+  @apply transition-shadow duration-200;
+}
+
+.chat-input__send {
+  @apply flex items-center justify-center;
+  @apply w-10 h-10 rounded-full;
+  @apply bg-brand-primary text-white;
+  @apply hover:bg-brand-primary-dark;
+  @apply focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2;
+  @apply transition-colors duration-200;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* ========================================
+   WELCOME MESSAGE
+   ======================================== */
+
+.welcome-message {
+  @apply text-center py-8 px-4;
+}
+
+.welcome-message__title {
+  @apply text-lg font-semibold text-chat-ai-text mb-2;
+}
+
+.welcome-message__subtitle {
+  @apply text-sm text-gray-500 mb-6;
+}
+
+.suggested-questions {
+  @apply space-y-2;
+}
+
+.suggested-question {
+  @apply w-full px-4 py-2.5;
+  @apply text-sm text-left;
+  @apply bg-white border border-chat-border rounded-lg;
+  @apply hover:border-brand-primary hover:bg-brand-bg-secondary;
+  @apply transition-colors duration-200;
+  @apply cursor-pointer;
+}
+
+/* ========================================
+   SOURCES PANEL
+   ======================================== */
+
+.sources-panel {
+  @apply mt-2 pt-2 border-t border-gray-100;
+}
+
+.sources-panel__toggle {
+  @apply flex items-center gap-1;
+  @apply text-xs text-gray-500;
+  @apply hover:text-brand-primary;
+  @apply cursor-pointer;
+}
+
+.sources-panel__list {
+  @apply mt-2 space-y-1;
+}
+
+.sources-panel__item {
+  @apply text-xs text-gray-600;
+  @apply hover:text-brand-primary;
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+
+.message-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.message-list::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
