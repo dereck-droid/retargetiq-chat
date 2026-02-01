@@ -1,4 +1,8 @@
-import { createUIMessageStream, createUIMessageStreamResponse } from "ai";
+import {
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  generateId,
+} from "ai";
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -52,6 +56,17 @@ export async function POST(req: Request) {
     return "";
   };
 
+  // Helper to write text as proper UI message chunks
+  const writeTextChunks = (
+    writer: { write: (chunk: unknown) => void },
+    text: string
+  ) => {
+    const id = generateId();
+    writer.write({ type: "text-start", id });
+    writer.write({ type: "text-delta", id, delta: text });
+    writer.write({ type: "text-end", id });
+  };
+
   // Format messages for n8n
   const formattedMessages = messages.map((m: unknown) => {
     const msg = m as Record<string, unknown>;
@@ -82,7 +97,10 @@ export async function POST(req: Request) {
         if (!n8nResponse.ok) {
           const errorText = await n8nResponse.text();
           console.error("n8n webhook error:", errorText);
-          writer.writeText("Sorry, there was an error connecting to the server.");
+          writeTextChunks(
+            writer,
+            "Sorry, there was an error connecting to the server."
+          );
           return;
         }
 
@@ -115,14 +133,18 @@ export async function POST(req: Request) {
         }
 
         if (!assistantMessage) {
-          assistantMessage = "Sorry, I didn't receive a response. Please try again.";
+          assistantMessage =
+            "Sorry, I didn't receive a response. Please try again.";
         }
 
-        // Write the response text
-        writer.writeText(assistantMessage);
+        // Write the response as proper UI message chunks
+        writeTextChunks(writer, assistantMessage);
       } catch (error) {
         console.error("Error calling n8n webhook:", error);
-        writer.writeText("Sorry, there was an error processing your request.");
+        writeTextChunks(
+          writer,
+          "Sorry, there was an error processing your request."
+        );
       }
     },
   });
