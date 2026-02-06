@@ -39,14 +39,14 @@ export function ChatInput({
   };
 
   return (
-    <div className="relative flex items-end gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 shadow-black/5 shadow-lg transition-all duration-200 focus-within:border-[#47C2EB]/50 focus-within:shadow-[#47C2EB]/5">
+    <div className="relative flex items-end gap-3 rounded-2xl border border-border/50 bg-card p-3 shadow-black/5 shadow-lg transition-all duration-200 focus-within:border-primary/50 focus-within:shadow-primary/5">
       <Textarea
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Paste customer email or support request here..."
-        className="max-h-[200px] min-h-[44px] flex-1 resize-none border-none bg-transparent p-2 text-[15px] text-white leading-relaxed shadow-none placeholder:text-gray-500 focus-visible:ring-0 focus-visible:ring-offset-0"
+        className="max-h-[200px] min-h-[44px] flex-1 resize-none border-none bg-transparent p-2 text-[15px] text-foreground leading-relaxed shadow-none placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
         disabled={isLoading}
         rows={1}
       />
@@ -54,7 +54,7 @@ export function ChatInput({
         onClick={onSubmit}
         disabled={isLoading || !value.trim()}
         size="icon"
-        className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] text-white shadow-[#47C2EB]/25 shadow-md transition-all duration-200 hover:from-[#3BA8D1] hover:to-[#2E96BD] hover:shadow-[#47C2EB]/30 hover:shadow-lg disabled:opacity-50 disabled:shadow-none"
+        className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-md shadow-primary/25 transition-all duration-200 hover:from-primary/90 hover:to-primary/70 hover:shadow-lg hover:shadow-primary/30 disabled:opacity-50 disabled:shadow-none"
       >
         <ArrowUp className="h-5 w-5" />
         <span className="sr-only">Send message</span>
