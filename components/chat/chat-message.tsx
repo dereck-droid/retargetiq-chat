@@ -28,25 +28,29 @@ export function ChatMessage({ message }: ChatMessageProps) {
   return (
     <div
       className={cn(
-        "flex gap-4 p-4 rounded-xl group transition-all duration-200",
+        "group flex gap-4 rounded-xl p-4 transition-all duration-200",
         isAssistant
-          ? "bg-white/5 border border-white/10 shadow-sm"
-          : "bg-transparent hover:bg-white/5"
+          ? "border border-white/10 bg-white/5 shadow-sm"
+          : "bg-transparent hover:bg-white/5",
       )}
     >
       <div
         className={cn(
           "flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-lg transition-transform group-hover:scale-105",
           isAssistant
-            ? "bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] text-white shadow-md shadow-[#47C2EB]/20"
-            : "bg-white/10 text-gray-300"
+            ? "bg-gradient-to-br from-[#47C2EB] to-[#3BA8D1] text-white shadow-[#47C2EB]/20 shadow-md"
+            : "bg-white/10 text-gray-300",
         )}
       >
-        {isAssistant ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
+        {isAssistant ? (
+          <Bot className="h-4 w-4" />
+        ) : (
+          <User className="h-4 w-4" />
+        )}
       </div>
       <div className="flex-1 space-y-2 overflow-hidden">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-sm font-medium text-white">
+          <span className="font-medium text-sm text-white">
             {isAssistant ? "Retarget IQ Assistant" : "You"}
           </span>
           {isAssistant && (
@@ -55,27 +59,27 @@ export function ChatMessage({ message }: ChatMessageProps) {
               size="sm"
               onClick={handleCopy}
               className={cn(
-                "opacity-0 group-hover:opacity-100 transition-all duration-200 h-7 px-2.5 rounded-lg",
+                "h-7 rounded-lg px-2.5 opacity-0 transition-all duration-200 group-hover:opacity-100",
                 copied
                   ? "bg-emerald-500/10 text-emerald-500 opacity-100"
-                  : "text-gray-400 hover:text-white hover:bg-white/10"
+                  : "text-gray-400 hover:bg-white/10 hover:text-white",
               )}
             >
               {copied ? (
                 <>
-                  <Check className="h-3.5 w-3.5 mr-1.5" />
+                  <Check className="mr-1.5 h-3.5 w-3.5" />
                   Copied
                 </>
               ) : (
                 <>
-                  <Copy className="h-3.5 w-3.5 mr-1.5" />
+                  <Copy className="mr-1.5 h-3.5 w-3.5" />
                   Copy
                 </>
               )}
             </Button>
           )}
         </div>
-        <div className="text-gray-200 whitespace-pre-wrap leading-relaxed">
+        <div className="whitespace-pre-wrap text-gray-200 leading-relaxed">
           {message.content}
         </div>
       </div>

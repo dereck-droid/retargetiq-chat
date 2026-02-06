@@ -2,17 +2,16 @@
 
 ## Active Codebase
 
-The **v0.dev version** (`v0.dev/ai-chat-interface/`) is the approved client-facing design. The root-level assistant-ui code is an earlier prototype that was NOT selected. The v0.dev code needs to be promoted to root and the old code archived or removed.
+The **v0.dev version** is now the root-level app. The old assistant-ui prototype has been archived to `archive/assistant-ui-version/`.
 
 ## Project Status
 
 - **Deployed:** Yes (Vercel), but NOT shared with client yet
 - **Blocked on:** Knowledge base (52 FAQs) needs client review/refinement before launch
-- **Both builds are fully functional** and connected to the n8n backend
 
 ## Architecture
 
-- **Frontend:** Next.js (v0.dev build) with React, Tailwind, theme support (light/dark/blue-gray)
+- **Frontend:** Next.js 16 with React 19, Tailwind 4, dark theme
 - **Backend:** n8n webhook (`POST /retargetiq-chat`) - separate from this repo
   - Uses OpenRouter with GPT-4o
   - All 52 FAQs embedded in the system prompt
@@ -23,10 +22,13 @@ The **v0.dev version** (`v0.dev/ai-chat-interface/`) is the approved client-faci
 
 ## Key Directories
 
-- `v0.dev/ai-chat-interface/` - ACTIVE codebase (promote this to root)
+- `app/` - Next.js app (page, layout, API route, styles)
+- `components/chat/` - Chat UI components (message display, input)
+- `components/ui/` - Shared UI primitives (button, textarea)
+- `lib/` - Utilities (`cn()` class merge helper)
 - `retarget-iq/` - Knowledge base, call transcripts, email templates, project docs
 - `retarget-iq/n8n-chat-workflow.json` - The n8n workflow definition
-- `app/`, `components/`, `hooks/`, `lib/` (root level) - OLD assistant-ui version (archive/remove)
+- `archive/assistant-ui-version/` - Old assistant-ui prototype (kept for reference)
 - `backup/` - Backup data
 
 ## Client Context

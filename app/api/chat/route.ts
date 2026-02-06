@@ -16,13 +16,13 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ messages }),
-    }
+    },
   );
 
   if (!response.ok) {
     return Response.json(
       { error: "Failed to get response from assistant" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
