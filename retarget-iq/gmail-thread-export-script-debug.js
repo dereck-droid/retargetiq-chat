@@ -8,12 +8,12 @@
 
 // Try multiple search queries to find what works
 const SEARCH_QUERIES = [
-  'to:info@retargetiq.com OR from:info@retargetiq.com',           // lowercase
-  'to:Info@retargetiq.com OR from:Info@retargetiq.com',           // original
-  '{to:info@retargetiq.com from:info@retargetiq.com}',            // alternative syntax
-  'info@retargetiq.com',                                           // simple search
-  'retargetiq.com',                                                // domain search
-  'in:inbox'                                                       // all inbox (to test)
+  "to:info@retargetiq.com OR from:info@retargetiq.com", // lowercase
+  "to:Info@retargetiq.com OR from:Info@retargetiq.com", // original
+  "{to:info@retargetiq.com from:info@retargetiq.com}", // alternative syntax
+  "info@retargetiq.com", // simple search
+  "retargetiq.com", // domain search
+  "in:inbox", // all inbox (to test)
 ];
 
 const MAX_THREADS = 300;
@@ -22,41 +22,49 @@ const MAX_THREADS = 300;
 
 function debugSearchQueries() {
   const ui = SpreadsheetApp.getUi();
-  let results = 'Testing different search queries:\n\n';
+  let results = "Testing different search queries:\n\n";
 
-  SEARCH_QUERIES.forEach(function(query, index) {
+  SEARCH_QUERIES.forEach(function (query, index) {
     const threads = GmailApp.search(query, 0, MAX_THREADS);
-    results += (index + 1) + '. Query: "' + query + '"\n';
-    results += '   Found: ' + threads.length + ' threads\n\n';
-    Logger.log('Query ' + (index + 1) + ': "' + query + '" found ' + threads.length + ' threads');
+    results += `${index + 1}. Query: "${query}"\n`;
+    results += `   Found: ${threads.length} threads\n\n`;
+    Logger.log(
+      "Query " +
+        (index + 1) +
+        ': "' +
+        query +
+        '" found ' +
+        threads.length +
+        " threads",
+    );
   });
 
-  ui.alert('Search Query Test Results', results, ui.ButtonSet.OK);
+  ui.alert("Search Query Test Results", results, ui.ButtonSet.OK);
 }
 
 // ============= MAIN FUNCTION (with better logging) =============
 
-function exportGmailThreadsToSheet() {
+function _exportGmailThreadsToSheet() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
   // Ask user which query to use
   const ui = SpreadsheetApp.getUi();
   const response = ui.prompt(
-    'Enter Search Query',
-    'Enter Gmail search query (or leave blank to test all queries first):\n\n' +
-    'Common options:\n' +
-    '- info@retargetiq.com\n' +
-    '- to:info@retargetiq.com OR from:info@retargetiq.com\n' +
-    '- in:inbox\n' +
-    '- after:2024/01/01',
-    ui.ButtonSet.OK_CANCEL
+    "Enter Search Query",
+    "Enter Gmail search query (or leave blank to test all queries first):\n\n" +
+      "Common options:\n" +
+      "- info@retargetiq.com\n" +
+      "- to:info@retargetiq.com OR from:info@retargetiq.com\n" +
+      "- in:inbox\n" +
+      "- after:2024/01/01",
+    ui.ButtonSet.OK_CANCEL,
   );
 
   if (response.getSelectedButton() !== ui.Button.OK) {
     return; // User cancelled
   }
 
-  let searchQuery = response.getResponseText().trim();
+  const searchQuery = response.getResponseText().trim();
 
   // If blank, run debug test
   if (!searchQuery) {
@@ -69,34 +77,39 @@ function exportGmailThreadsToSheet() {
 
   // Set up headers
   const headers = [
-    'Thread ID',
-    'Subject',
-    'First Message Date',
-    'Last Message Date',
-    'Number of Messages',
-    'Participants',
-    'Complete Thread Content',
-    'Preview (First 200 chars)'
+    "Thread ID",
+    "Subject",
+    "First Message Date",
+    "Last Message Date",
+    "Number of Messages",
+    "Participants",
+    "Complete Thread Content",
+    "Preview (First 200 chars)",
   ];
   sheet.appendRow(headers);
 
   // Format header row
-  sheet.getRange(1, 1, 1, headers.length)
-    .setFontWeight('bold')
-    .setBackground('#4285f4')
-    .setFontColor('#ffffff');
+  sheet
+    .getRange(1, 1, 1, headers.length)
+    .setFontWeight("bold")
+    .setBackground("#4285f4")
+    .setFontColor("#ffffff");
 
   // Search Gmail threads
-  Logger.log('Searching Gmail with query: ' + searchQuery);
+  Logger.log(`Searching Gmail with query: ${searchQuery}`);
   const threads = GmailApp.search(searchQuery, 0, MAX_THREADS);
-  Logger.log('Found ' + threads.length + ' threads');
+  Logger.log(`Found ${threads.length} threads`);
 
   // Show immediate feedback
-  ui.alert('Search Results', 'Found ' + threads.length + ' threads matching: "' + searchQuery + '"', ui.ButtonSet.OK);
+  ui.alert(
+    "Search Results",
+    `Found ${threads.length} threads matching: "${searchQuery}"`,
+    ui.ButtonSet.OK,
+  );
 
   // Process each thread
   let processedCount = 0;
-  threads.forEach(function(thread, index) {
+  threads.forEach(function (thread, index) {
     try {
       const threadData = extractThreadData(thread);
       sheet.appendRow(threadData);
@@ -104,10 +117,12 @@ function exportGmailThreadsToSheet() {
 
       // Log progress every 50 threads
       if ((index + 1) % 50 === 0) {
-        Logger.log('Processed ' + (index + 1) + ' threads...');
+        Logger.log(`Processed ${index + 1} threads...`);
       }
     } catch (error) {
-      Logger.log('Error processing thread ' + thread.getId() + ': ' + error.toString());
+      Logger.log(
+        `Error processing thread ${thread.getId()}: ${error.toString()}`,
+      );
     }
   });
 
@@ -121,15 +136,17 @@ function exportGmailThreadsToSheet() {
   // Freeze header row
   sheet.setFrozenRows(1);
 
-  Logger.log('Export complete! Processed ' + processedCount + ' threads.');
+  Logger.log(`Export complete! Processed ${processedCount} threads.`);
 
   // Show completion message
   ui.alert(
-    'Export Complete',
-    'Successfully exported ' + processedCount + ' email threads.\n\n' +
-    'To download as CSV:\n' +
-    'File > Download > Comma Separated Values (.csv)',
-    ui.ButtonSet.OK
+    "Export Complete",
+    "Successfully exported " +
+      processedCount +
+      " email threads.\n\n" +
+      "To download as CSV:\n" +
+      "File > Download > Comma Separated Values (.csv)",
+    ui.ButtonSet.OK,
   );
 }
 
@@ -147,7 +164,7 @@ function extractThreadData(thread) {
   const threadContent = buildThreadContent(messages);
 
   // Create preview (first 200 characters)
-  const preview = threadContent.substring(0, 200).replace(/\n/g, ' ') + '...';
+  const preview = `${threadContent.substring(0, 200).replace(/\n/g, " ")}...`;
 
   return [
     thread.getId(),
@@ -155,16 +172,16 @@ function extractThreadData(thread) {
     firstMessage.getDate(),
     lastMessage.getDate(),
     messages.length,
-    participants.join(', '),
+    participants.join(", "),
     threadContent,
-    preview
+    preview,
   ];
 }
 
 function getUniqueParticipants(messages) {
   const participantSet = new Set();
 
-  messages.forEach(function(message) {
+  messages.forEach(function (message) {
     // Add sender
     const from = message.getFrom();
     const fromEmail = extractEmail(from);
@@ -172,14 +189,20 @@ function getUniqueParticipants(messages) {
 
     // Add recipients
     const to = message.getTo();
-    const toEmails = to.split(',').map(extractEmail).filter(e => e);
-    toEmails.forEach(email => participantSet.add(email));
+    const toEmails = to
+      .split(",")
+      .map(extractEmail)
+      .filter((e) => e);
+    toEmails.forEach((email) => participantSet.add(email));
 
     // Add CC recipients
     const cc = message.getCc();
     if (cc) {
-      const ccEmails = cc.split(',').map(extractEmail).filter(e => e);
-      ccEmails.forEach(email => participantSet.add(email));
+      const ccEmails = cc
+        .split(",")
+        .map(extractEmail)
+        .filter((e) => e);
+      ccEmails.forEach((email) => participantSet.add(email));
     }
   });
 
@@ -193,23 +216,23 @@ function extractEmail(emailString) {
 }
 
 function buildThreadContent(messages) {
-  let content = '';
+  let content = "";
 
-  messages.forEach(function(message, index) {
-    const separator = index === 0 ? '' : '\n\n--- NEXT MESSAGE ---\n\n';
+  messages.forEach(function (message, index) {
+    const separator = index === 0 ? "" : "\n\n--- NEXT MESSAGE ---\n\n";
 
     content += separator;
-    content += 'FROM: ' + message.getFrom() + '\n';
-    content += 'TO: ' + message.getTo() + '\n';
+    content += `FROM: ${message.getFrom()}\n`;
+    content += `TO: ${message.getTo()}\n`;
 
     const cc = message.getCc();
     if (cc) {
-      content += 'CC: ' + cc + '\n';
+      content += `CC: ${cc}\n`;
     }
 
-    content += 'DATE: ' + message.getDate() + '\n';
-    content += 'SUBJECT: ' + message.getSubject() + '\n';
-    content += '\n';
+    content += `DATE: ${message.getDate()}\n`;
+    content += `SUBJECT: ${message.getSubject()}\n`;
+    content += "\n";
     content += message.getPlainBody();
   });
 
@@ -218,10 +241,10 @@ function buildThreadContent(messages) {
 
 // ============= UTILITY FUNCTIONS =============
 
-function onOpen() {
+function _onOpen() {
   const ui = SpreadsheetApp.getUi();
-  ui.createMenu('Gmail Export')
-    .addItem('Export Email Threads', 'exportGmailThreadsToSheet')
-    .addItem('Test Search Queries', 'debugSearchQueries')
+  ui.createMenu("Gmail Export")
+    .addItem("Export Email Threads", "exportGmailThreadsToSheet")
+    .addItem("Test Search Queries", "debugSearchQueries")
     .addToUi();
 }
